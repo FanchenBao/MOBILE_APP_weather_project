@@ -30,7 +30,7 @@ class WeatherProject extends Component {
 
   /**
    * Obtain the weather info asynchronously, and then set the forcast item in
-   * this.state.forecast accordingly. Note that this.state.isValid is set here
+   * this.state.forecast accordingly. Note that other states are set here
    * as well to avoid extra call on this.setState().
    *
    * @param {string} zipInput The user-input zip code.
@@ -38,8 +38,14 @@ class WeatherProject extends Component {
   async _setStateForecast(zipInput) {
     try {
       let curr_forecast = await fetchWeatherInfo(zipInput);
-      this.setState({forecast: curr_forecast, isValid: true}, () =>
-        console.log(this.state),
+      this.setState(
+        {
+          forecast: curr_forecast,
+          isValid: true,
+          hasModified: true,
+          zip: zipInput,
+        },
+        () => console.log(this.state),
       );
     } catch (error) {
       console.error(error);
@@ -56,13 +62,18 @@ class WeatherProject extends Component {
    * @param {string} zipInput The user-input zip code.
    */
   _handleZipInput(zipInput) {
-    this.setState({hasModified: true, zip: zipInput});
+    // this.setState({hasModified: true, zip: zipInput});
     if (this._isZipValid(zipInput)) {
       // zip code input successful and it is different from previous input
       this._setStateForecast(zipInput);
     } else {
       // input invalid. record zip input, reset forecast, and set error msg type
-      this.setState({zip: zipInput, forecast: null, isValid: false});
+      this.setState({
+        zip: zipInput,
+        forecast: null,
+        isValid: false,
+        hasModified: true,
+      });
     }
   }
 
@@ -95,13 +106,18 @@ class WeatherProject extends Component {
     // been populated.
     let weatherForecast = null;
     if (this.state.forecast !== null) {
-      weatherForecast = (
-        <Forecast
-          main={this.state.forecast.main}
-          description={this.state.forecast.description}
-          temp={this.state.forecast.temp}
-        />
-      );
+      if (this.state.forecast.errorMsg === '') {
+        weatherForecast = (
+          <Forecast
+            main={this.state.forecast.main}
+            description={this.state.forecast.description}
+            temp={this.state.forecast.temp}
+            errorMsg={''}
+          />
+        );
+      } else {
+        weatherForecast = <Forecast errorMsg={this.state.forecast.errorMsg} />;
+      }
     }
 
     return (

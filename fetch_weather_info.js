@@ -9,11 +9,16 @@ async function fetchWeatherInfo(zip) {
   try {
     let resp = await fetch(makeUrl(zip));
     let respJson = await resp.json();
-    return {
-      main: respJson.weather[0].main,
-      description: respJson.weather[0].description,
-      temp: respJson.main.temp,
-    };
+    if (respJson.cod === 200) {
+      return {
+        main: respJson.weather[0].main,
+        description: respJson.weather[0].description,
+        temp: respJson.main.temp,
+        errorMsg: '',
+      };
+    } else {
+      return {errorMsg: respJson.message};
+    }
   } catch (error) {
     console.error(error);
   }
