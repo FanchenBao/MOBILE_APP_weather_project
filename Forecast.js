@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 
+/** A class to wrap the display of weather forecast */
 class Forecast extends Component {
   render() {
     return (
@@ -27,4 +28,4 @@ const styles = StyleSheet.create({
   mainText: {flex: 1, fontSize: 16, textAlign: 'center', color: 'blue'},
 });
 
-export default Forecast;
+export {Forecast};
