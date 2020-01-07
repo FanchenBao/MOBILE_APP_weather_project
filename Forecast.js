@@ -7,11 +7,13 @@ class Forecast extends Component {
     if (this.props.errorMsg === '') {
       return (
         <View style={styles.container}>
-          <Text style={styles.bigText}>{this.props.main}</Text>
+          <Text style={styles.bigText}>{this.props.name}</Text>
           <Text style={styles.mainText}>
-            {`Current conditions: ${this.props.description}`}
+            {`Conditions:\t\t${this.props.description}`}
           </Text>
-          <Text style={styles.bigText}>{`${this.props.temp}°F`}</Text>
+          <Text style={styles.mainText}>{`Temperature:\t${
+            this.props.temp
+          }°F`}</Text>
         </View>
       );
     } else {
@@ -25,16 +27,15 @@ class Forecast extends Component {
 }
 
 const styles = StyleSheet.create({
-  container: {height: 200},
+  container: {height: 200, justifyContent: 'center'},
   bigText: {
-    flex: 2,
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
+    fontSize: 30,
     color: 'blue',
+    margin: 5,
+    textAlign: 'center',
   },
-  mainText: {flex: 1, fontSize: 16, textAlign: 'center', color: 'blue'},
-  errorText: {flex: 1, fontSize: 16, textAlign: 'center', color: 'red'},
+  mainText: {fontSize: 20, color: 'blue', margin: 5},
+  errorText: {fontSize: 20, color: 'red', margin: 5},
 });
 
 export {Forecast};

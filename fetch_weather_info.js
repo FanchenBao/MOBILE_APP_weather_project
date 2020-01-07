@@ -14,6 +14,7 @@ async function fetchWeatherInfo(zip) {
         main: respJson.weather[0].main,
         description: respJson.weather[0].description,
         temp: respJson.main.temp,
+        name: respJson.name,
         errorMsg: '',
       };
     } else {

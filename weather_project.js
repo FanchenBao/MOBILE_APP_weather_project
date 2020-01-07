@@ -113,6 +113,7 @@ class WeatherProject extends Component {
             description={this.state.forecast.description}
             temp={this.state.forecast.temp}
             errorMsg={''}
+            name={this.state.forecast.name}
           />
         );
       } else {
