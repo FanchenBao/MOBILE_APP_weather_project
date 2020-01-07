@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, View, TextInput} from 'react-native';
 import validate from 'validate.js';
+import Forecast from './Forecast';
 
 export default class WeatherProject extends Component {
   constructor(props) {
@@ -9,6 +10,7 @@ export default class WeatherProject extends Component {
       hasModified: false,
       isValid: false,
       zip: '',
+      forecast: null,
     };
   }
 
@@ -35,17 +37,29 @@ export default class WeatherProject extends Component {
 
   _displayMsgAfterZipInput() {
     if (this._isZipValid()) {
+      // Successful zip code input
       return (
         <Text style={styles.welcome}>
           {`Great! Your zip code is ${this.state.zip}`}
         </Text>
       );
     } else {
-      return <Text style={styles.error}>{this._renderError()}</Text>;
+      return <Text style={styles.error}>{this._renderError()}</Text>; // error msg
     }
   }
 
   render() {
+    let weatherForecast = null;
+    if (this.state.forecast !== null) {
+      weatherForecast = (
+        <Forecast
+          main={this.state.forecast.main}
+          description={this.state.forecast.description}
+          temp={this.state.forecast.temp}
+        />
+      );
+    }
+
     return (
       <View style={styles.container}>
         <TextInput
@@ -57,6 +71,7 @@ export default class WeatherProject extends Component {
           keyboardType={'number-pad'}
         />
         {this._displayMsgAfterZipInput()}
+        {weatherForecast}
       </View>
     );
   }
@@ -79,7 +94,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   error: {
-    fontSize: 20,
+    fontSize: 15,
     textAlign: 'center',
     margin: 10,
     color: 'red',
