@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View, TextInput, FlatList} from 'react-native';
+import {StyleSheet, Text, View, TextInput} from 'react-native';
 import validate from 'validate.js';
 
 export default class WeatherProject extends Component {
@@ -41,7 +41,6 @@ export default class WeatherProject extends Component {
         </Text>
       );
     } else {
-      console.log(`${this.state.zip === ''} and ${this.state.hasModified}`);
       return <Text style={styles.error}>{this._renderError()}</Text>;
     }
   }
@@ -89,8 +88,9 @@ const styles = StyleSheet.create({
 
 const constraints = {
   zip: {
+    // do not check for empty value here, because the regex pattern alread deems empty value as invalid
     format: {
-      pattern: /\d{5}(-\d{4})?/, // regex pattern must be enclosed by forward slashes
+      pattern: /\d{5}/, // regex pattern must be enclosed by forward slashes
     },
   },
 };
