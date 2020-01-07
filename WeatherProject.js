@@ -1,16 +1,49 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View, TextInput} from 'react-native';
+import {StyleSheet, Text, View, TextInput, FlatList} from 'react-native';
 import validate from 'validate.js';
 
 export default class WeatherProject extends Component {
   constructor(props) {
     super(props);
-    this.state = {zip: ''};
+    this.state = {
+      hasModified: false,
+      isValid: false,
+      zip: '',
+    };
   }
 
-  _validateZip() {
-    let res = validate(this.state, constraints);
-    console.log(res);
+  _isZipValid() {
+    /*
+    Check whether the input zip code, which is currently in this.state, is of valid format.
+    If it is valid, return true, otherwise false.
+    */
+    return validate(this.state, constraints) === undefined ? true : false;
+  }
+
+  _renderError() {
+    /*
+    pre-condition for calling this function is that zip code validate already fails. This function further
+    distinguish whether the failure is due to zip code not being filled or invalid zip code.
+    */
+    if (this.state.zip === '') {
+      // if state hasn't been modified, do not report error message.
+      return this.state.hasModified ? 'Zip code is required!' : null;
+    } else {
+      return 'Zip code is invalid!';
+    }
+  }
+
+  _displayMsgAfterZipInput() {
+    if (this._isZipValid()) {
+      return (
+        <Text style={styles.welcome}>
+          {`Great! Your zip code is ${this.state.zip}`}
+        </Text>
+      );
+    } else {
+      console.log(`${this.state.zip === ''} and ${this.state.hasModified}`);
+      return <Text style={styles.error}>{this._renderError()}</Text>;
+    }
   }
 
   render() {
@@ -18,14 +51,13 @@ export default class WeatherProject extends Component {
       <View style={styles.container}>
         <TextInput
           style={styles.input}
-          onChangeText={text => this.setState({zip: text})}
-          onSubmitEditing={() => this._validateZip()}
+          onSubmitEditing={event =>
+            this.setState({zip: event.nativeEvent.text, hasModified: true})
+          }
           placeholder={'Input a zip code...'}
           keyboardType={'number-pad'}
         />
-        <Text style={styles.welcome}>{`You have input zip code: ${
-          this.state.zip
-        }`}</Text>
+        {this._displayMsgAfterZipInput()}
       </View>
     );
   }
@@ -47,17 +79,18 @@ const styles = StyleSheet.create({
     width: 200,
     textAlign: 'center',
   },
+  error: {
+    fontSize: 20,
+    textAlign: 'center',
+    margin: 10,
+    color: 'red',
+  },
 });
 
 const constraints = {
   zip: {
-    presence: {
-      allowEmpty: false,
-      message: 'required.',
-    },
     format: {
       pattern: /\d{5}(-\d{4})?/, // regex pattern must be enclosed by forward slashes
-      message: 'new error message',
     },
   },
 };
