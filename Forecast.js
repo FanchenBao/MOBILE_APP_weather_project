@@ -3,6 +3,10 @@ import {StyleSheet, Text, View} from 'react-native';
 
 /** A class to wrap the display of weather forecast */
 class Forecast extends Component {
+  /**
+   * Determine whether to display city name corresponding to the zip input, or
+   * error message notifying that the zip input does not correspond to a city.
+   */
   _cityOrError() {
     if (this.props.errorMsg === '') {
       return <Text style={forecastStyles.cityText}>{this.props.name}</Text>;
@@ -13,6 +17,9 @@ class Forecast extends Component {
     }
   }
 
+  /**
+   * Display weather information, including condition and temperature.
+   */
   _weatherInfo() {
     if (this.props.errorMsg === '') {
       return (

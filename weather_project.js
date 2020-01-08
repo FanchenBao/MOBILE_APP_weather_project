@@ -32,7 +32,7 @@ class WeatherProject extends Component {
       forecast: null,
       hasInternet: false,
     };
-    this.unsubscribe = null;
+    this.unsubscribe = null; // dummy value. It will be set later.
   }
 
   /**
@@ -56,15 +56,7 @@ class WeatherProject extends Component {
   async _setStateForecast(zipInput) {
     try {
       let curr_forecast = await fetchWeatherInfo(zipInput);
-      this.setState(
-        {
-          forecast: curr_forecast,
-          zipIsValid: true,
-          hasModified: true,
-          zip: zipInput,
-        },
-        () => console.log(this.state),
-      );
+      this.setState({forecast: curr_forecast}, () => console.log(this.state));
     } catch (error) {
       console.error(error);
     }
@@ -82,6 +74,7 @@ class WeatherProject extends Component {
   _handleZipInput(zipInput) {
     // this.setState({hasModified: true, zip: zipInput});
     if (this._isZipValid(zipInput)) {
+      this.setState({zipIsValid: true, hasModified: true, zip: zipInput});
       // zip code input successful and it is different from previous input
       this._setStateForecast(zipInput);
     } else {
@@ -118,7 +111,9 @@ class WeatherProject extends Component {
       }
     } else {
       // no internet connection, report error
-      return <Text style={[styles.bubble, styles.warning]}>No Internet</Text>;
+      return (
+        <Text style={[styles.bubble, styles.warning]}>{'No  Internet'}</Text>
+      );
     }
   }
 
