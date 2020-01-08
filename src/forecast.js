@@ -115,7 +115,7 @@ const forecastStyles = StyleSheet.create({
     fontSize: bigTextSize,
     color: 'white',
     backgroundColor: 'red',
-    //borderRadius: 10,
+    borderRadius: 10,
     padding: 10,
   },
 });
