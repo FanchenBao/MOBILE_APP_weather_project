@@ -29,7 +29,10 @@
     "typescript": "^3.7.4"
   },
   "jest": {
-    "preset": "react-native"
+    "preset": "react-native",
+    "setupFiles": [
+      "./jest.setup.js"
+    ]
   },
   "husky": {
     "hooks": {
