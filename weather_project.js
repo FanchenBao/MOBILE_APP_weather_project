@@ -94,11 +94,11 @@ class WeatherProject extends Component {
         // not been modified, meaning the app has not been used yet, do not show
         // error.
         return this.state.hasModified ? (
-          <Text style={styles.error}>{'Zip code required!'}</Text>
+          <Text style={styles.zipError}>Zip required</Text>
         ) : null;
       } else {
         // invalid zip code format.
-        return <Text style={styles.error}>{'Zip code INVALID!'}</Text>;
+        return <Text style={styles.zipError}>Zip INVALID!</Text>;
       }
     }
   }
@@ -141,11 +141,10 @@ class WeatherProject extends Component {
                   this._handleZipInput(event.nativeEvent.text)
                 }
               />
-              <Text style={styles.zipError}>some word</Text>
+              <View style={styles.zipErrorContainer}>{this._errorMsg()}</View>
             </View>
           </View>
-          {/* {this._errorMsg()} */}
-          {weatherForecast}
+          {/* {weatherForecast} */}
           <View style={styles.forecast}>
             <Text>hello</Text>
           </View>
@@ -200,9 +199,12 @@ const styles = StyleSheet.create({
     // borderWidth: 2,
   },
   mainText: {fontSize: baseFontSize, color: '#FFFFFF'},
-  zipError: {
+  zipErrorContainer: {
     flex: 1,
-    fontSize: 16,
+  },
+  zipError: {
+    // flex: 1,
+    fontSize: 14,
     textAlign: 'center',
     color: 'white',
     backgroundColor: 'red',
