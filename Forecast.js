@@ -30,11 +30,11 @@ const styles = StyleSheet.create({
   container: {height: 200, justifyContent: 'center'},
   bigText: {
     fontSize: 30,
-    color: 'blue',
+    color: 'lightblue',
     margin: 5,
     textAlign: 'center',
   },
-  mainText: {fontSize: 20, color: 'blue', margin: 5},
+  mainText: {fontSize: 20, color: 'lightblue', margin: 5},
   errorText: {fontSize: 20, color: 'red', margin: 5},
 });
 

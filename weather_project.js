@@ -1,5 +1,12 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View, TextInput} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  Dimensions,
+  ImageBackground,
+} from 'react-native';
 import validate from 'validate.js';
 import {Forecast} from './forecast.js';
 import {fetchWeatherInfo} from './fetch_weather_info.js'; // a function
@@ -80,24 +87,19 @@ class WeatherProject extends Component {
   /**
    * Produce welcome or error message based on this.state.
    */
-  _welcomeOrErrorMsg() {
-    if (this.state.isValid) {
-      // valid zip code format
-      return (
-        <Text style={styles.welcome}>{`Weather forecast for ${
-          this.state.zip
-        }:`}</Text>
-      );
-    } else if (this.state.zip === '') {
-      // no zip code input. If input has been modified, show error. If input has
-      // not been modified, meaning the app has not been used yet, do not show
-      // error.
-      return this.state.hasModified ? (
-        <Text style={styles.error}>{'Zip code required!'}</Text>
-      ) : null;
-    } else {
-      // invalid zip code format.
-      return <Text style={styles.error}>{'Zip code INVALID!'}</Text>;
+  _errorMsg() {
+    if (!this.state.isValid) {
+      if (this.state.zip === '') {
+        // no zip code input. If input has been modified, show error. If input has
+        // not been modified, meaning the app has not been used yet, do not show
+        // error.
+        return this.state.hasModified ? (
+          <Text style={styles.error}>{'Zip code required!'}</Text>
+        ) : null;
+      } else {
+        // invalid zip code format.
+        return <Text style={styles.error}>{'Zip code INVALID!'}</Text>;
+      }
     }
   }
 
@@ -122,43 +124,73 @@ class WeatherProject extends Component {
     }
 
     return (
-      <View style={styles.container}>
-        <TextInput
-          style={styles.input}
-          onSubmitEditing={event =>
-            this._handleZipInput(event.nativeEvent.text)
-          }
-          placeholder={'Input a zip code...'}
-          keyboardType={'number-pad'}
-        />
-        {this._welcomeOrErrorMsg()}
-        {weatherForecast}
-      </View>
+      <ImageBackground
+        source={require('./background.jpeg')}
+        resizeMode="cover"
+        style={styles.backdrop}>
+        <View style={styles.overlay}>
+          <View style={styles.row}>
+            <Text style={styles.mainText}>{'Current weather for '}</Text>
+            <View style={styles.zipContainer}>
+              <TextInput
+                style={[styles.zipCode, styles.mainText]}
+                placeholder={'enter zip code'}
+                placeholderTextColor={'grey'}
+                keyboardType={'number-pad'}
+                onSubmitEditing={event =>
+                  this._handleZipInput(event.nativeEvent.text)
+                }
+                // underlineColorAndroid="transparent"
+              />
+            </View>
+          </View>
+          {this._errorMsg()}
+          {weatherForecast}
+        </View>
+      </ImageBackground>
     );
   }
 }
 
+const baseFontSize = 20;
 const styles = StyleSheet.create({
-  container: {
+  backdrop: {
     flex: 1,
-    justifyContent: 'flex-start',
+    flexDirection: 'column',
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height,
+  },
+  overlay: {
+    paddingTop: 5,
+    backgroundColor: '#333333',
+    opacity: 0.7,
+    flexDirection: 'column',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    height: Dimensions.get('window').height / 2,
   },
-  welcome: {fontSize: 20, textAlign: 'center', margin: 10},
-  input: {
-    fontSize: 20,
-    borderWidth: 2,
-    padding: 2,
-    height: 40,
-    width: 200,
+  row: {
+    flexDirection: 'row',
+    flexWrap: 'nowrap',
+    alignItems: 'center',
+    padding: 30,
+  },
+  zipContainer: {
+    height: baseFontSize + 30,
+    borderBottomColor: '#DDDDDD',
+    borderBottomWidth: 2,
+    marginLeft: 5,
+  },
+  zipCode: {
+    flex: 1,
+    flexBasis: 1,
+    width: 140,
+    height: baseFontSize,
     textAlign: 'center',
-    marginTop: 20,
   },
+  mainText: {fontSize: baseFontSize, color: '#FFFFFF'},
   error: {
-    fontSize: 15,
+    fontSize: baseFontSize,
     textAlign: 'center',
-    margin: 5,
     color: 'red',
   },
 });
