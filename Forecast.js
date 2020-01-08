@@ -47,7 +47,7 @@ class Forecast extends Component {
 }
 
 const bigTextSize = 40;
-const regTextSize = 25;
+const regTextSize = 20;
 const forecastStyles = StyleSheet.create({
   container: {
     flex: 2,
@@ -87,7 +87,7 @@ const forecastStyles = StyleSheet.create({
   content: {
     flex: 1,
     flexDirection: 'column',
-    alignItems: 'flex-start',
+    alignItems: 'center',
     justifyContent: 'space-evenly',
     // borderColor: 'purple',
     // borderWidth: 2,
@@ -95,6 +95,7 @@ const forecastStyles = StyleSheet.create({
   contentText: {
     fontSize: regTextSize,
     color: 'lightblue',
+    marginRight: 30,
     // borderColor: 'lemonchiffon',
     // borderWidth: 2,
   },

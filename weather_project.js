@@ -8,6 +8,7 @@ import {
   ImageBackground,
 } from 'react-native';
 import validate from 'validate.js';
+import NetInfo from '@react-native-community/netinfo';
 import {Forecast, forecastStyles} from './forecast.js';
 import {fetchWeatherInfo} from './fetch_weather_info.js'; // a function
 
@@ -18,18 +19,20 @@ class WeatherProject extends Component {
     // state stores all info needed for the app.
     this.state = {
       hasModified: false, // wheather an input has been made
-      isValid: false, // whether input zip code is valid
+      zipIsValid: false, // whether input zip code is valid
       zip: '',
       // forecast: {
-      //   errorMsg: 'City not found',
-      //   // errorMsg: '',
-      //   description: 'broken clouds',
+      //   // errorMsg: 'City not found',
+      //   errorMsg: '',
+      //   description: 'scattered clouds',
       //   main: 'Clouds',
       //   name: 'Schenectady',
       //   temp: '34.36',
       // },
       forecast: null,
+      hasInternet: false,
     };
+    this.unsubscribe = null;
   }
 
   /**
@@ -56,7 +59,7 @@ class WeatherProject extends Component {
       this.setState(
         {
           forecast: curr_forecast,
-          isValid: true,
+          zipIsValid: true,
           hasModified: true,
           zip: zipInput,
         },
@@ -86,29 +89,49 @@ class WeatherProject extends Component {
       this.setState({
         zip: zipInput,
         forecast: null,
-        isValid: false,
+        zipIsValid: false,
         hasModified: true,
       });
     }
   }
 
   /**
-   * Produce welcome or error message based on this.state.
+   * Produce error message based on this.state.
    */
   _errorMsg() {
-    if (!this.state.isValid) {
-      if (this.state.zip === '') {
-        // no zip code input. If input has been modified, show error. If input has
-        // not been modified, meaning the app has not been used yet, do not show
-        // error.
-        return this.state.hasModified ? (
-          <Text style={styles.zipError}>Zip required</Text>
-        ) : null;
+    if (this.state.hasInternet) {
+      // all following checks makes sense if there is internet connection
+      if (!this.state.zipIsValid) {
+        if (this.state.zip === '') {
+          // no zip code input. If input has been modified, show error. If input has
+          // not been modified, meaning the app has not been used yet, do not show
+          // error.
+          return this.state.hasModified ? (
+            <Text style={[styles.bubble, styles.error]}>Zip required</Text>
+          ) : null;
+        } else {
+          // invalid zip code format.
+          return <Text style={[styles.bubble, styles.error]}>Zip INVALID</Text>;
+        }
       } else {
-        // invalid zip code format.
-        return <Text style={styles.zipError}>Zip INVALID!</Text>;
+        return null;
       }
+    } else {
+      // no internet connection, report error
+      return <Text style={[styles.bubble, styles.warning]}>No Internet</Text>;
     }
+  }
+
+  componentDidMount() {
+    // subscribe to NetInfo
+    this.unsubscribe = NetInfo.addEventListener(state =>
+      this.setState({hasInternet: state.isInternetReachable}),
+    );
+  }
+
+  componentWillUnMount() {
+    // unsubscribe to NetInfo to avoid memory leak.
+    this.unsubscribe();
   }
 
   render() {
@@ -142,12 +165,13 @@ class WeatherProject extends Component {
             <View style={styles.zipContainer}>
               <TextInput
                 style={[styles.zipCode, styles.mainText]}
-                placeholder={'enter zip code'}
+                placeholder={'zip code'}
                 placeholderTextColor={'grey'}
                 keyboardType={'number-pad'}
                 onSubmitEditing={event =>
                   this._handleZipInput(event.nativeEvent.text)
                 }
+                editable={this.state.hasInternet}
               />
               <View style={styles.zipErrorContainer}>{this._errorMsg()}</View>
             </View>
@@ -178,7 +202,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'nowrap',
     alignItems: 'center',
-    paddingHorizontal: 45,
+    paddingHorizontal: 40,
     flex: 1,
     // borderColor: 'blue',
     // borderWidth: 2,
@@ -206,14 +230,19 @@ const styles = StyleSheet.create({
   zipErrorContainer: {
     flex: 1,
   },
-  zipError: {
+  bubble: {
     fontSize: 14,
     textAlign: 'center',
     color: 'white',
-    backgroundColor: 'red',
     borderRadius: 10,
-    marginHorizontal: 20,
+    marginHorizontal: 10,
     marginTop: 5,
+  },
+  error: {
+    backgroundColor: 'red',
+  },
+  warning: {
+    backgroundColor: 'orange',
   },
 });
 

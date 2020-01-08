@@ -11,6 +11,7 @@
     "postinstall": "rm -rf .git/hooks/pre-push && node node_modules/husky/bin/install.js && rm -rf .git/hooks/pre-commit"
   },
   "dependencies": {
+    "@react-native-community/netinfo": "^5.3.2",
     "react": "16.9.0",
     "react-native": "0.61.5",
     "validate.js": "^0.13.1"
