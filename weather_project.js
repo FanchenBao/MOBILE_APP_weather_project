@@ -140,12 +140,15 @@ class WeatherProject extends Component {
                 onSubmitEditing={event =>
                   this._handleZipInput(event.nativeEvent.text)
                 }
-                // underlineColorAndroid="transparent"
               />
+              <Text style={styles.zipError}>some word</Text>
             </View>
           </View>
-          {this._errorMsg()}
+          {/* {this._errorMsg()} */}
           {weatherForecast}
+          <View style={styles.forecast}>
+            <Text>hello</Text>
+          </View>
         </View>
       </ImageBackground>
     );
@@ -172,26 +175,45 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'nowrap',
     alignItems: 'center',
-    padding: 30,
+    paddingHorizontal: 20,
+    flex: 1,
+    // borderColor: 'blue',
+    // borderWidth: 2,
   },
   zipContainer: {
-    height: baseFontSize + 30,
-    borderBottomColor: '#DDDDDD',
-    borderBottomWidth: 2,
+    flex: 1,
     marginLeft: 5,
+    justifyContent: 'center',
+    // borderColor: 'black',
+    // borderWidth: 2,
   },
   zipCode: {
-    flex: 1,
-    flexBasis: 1,
-    width: 140,
-    height: baseFontSize,
+    flex: 2,
+    height: baseFontSize + 60,
     textAlign: 'center',
+    borderBottomColor: 'white',
+    borderBottomWidth: 2,
+    // The paddings below are used to align input text with main text
+    paddingTop: 27,
+    paddingBottom: 0,
+    // borderColor: '#DDDDDD',
+    // borderWidth: 2,
   },
   mainText: {fontSize: baseFontSize, color: '#FFFFFF'},
-  error: {
-    fontSize: baseFontSize,
+  zipError: {
+    flex: 1,
+    fontSize: 16,
     textAlign: 'center',
-    color: 'red',
+    color: 'white',
+    backgroundColor: 'red',
+    borderRadius: 10,
+    marginHorizontal: 30,
+    marginTop: 5,
+  },
+  forecast: {
+    flex: 2,
+    borderColor: 'yellow',
+    borderWidth: 2,
   },
 });
 
