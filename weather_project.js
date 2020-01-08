@@ -8,7 +8,7 @@ import {
   ImageBackground,
 } from 'react-native';
 import validate from 'validate.js';
-import {Forecast} from './forecast.js';
+import {Forecast, forecastStyles} from './forecast.js';
 import {fetchWeatherInfo} from './fetch_weather_info.js'; // a function
 
 /** The main class aggregating all app functionalities. */
@@ -20,6 +20,14 @@ class WeatherProject extends Component {
       hasModified: false, // wheather an input has been made
       isValid: false, // whether input zip code is valid
       zip: '',
+      // forecast: {
+      //   errorMsg: 'City not found',
+      //   // errorMsg: '',
+      //   description: 'broken clouds',
+      //   main: 'Clouds',
+      //   name: 'Schenectady',
+      //   temp: '34.36',
+      // },
       forecast: null,
     };
   }
@@ -104,9 +112,9 @@ class WeatherProject extends Component {
   }
 
   render() {
-    // Produce a Forecast component based on whether this.state.forecast has
-    // been populated.
-    let weatherForecast = null;
+    // Placeholder
+    let weatherForecast = <View style={forecastStyles.container} />;
+    // Produce a Forecast component if forecast is available
     if (this.state.forecast !== null) {
       if (this.state.forecast.errorMsg === '') {
         weatherForecast = (
@@ -145,9 +153,6 @@ class WeatherProject extends Component {
             </View>
           </View>
           {weatherForecast}
-          <View style={styles.forecast}>
-            <Text>hello</Text>
-          </View>
         </View>
       </ImageBackground>
     );
@@ -167,14 +172,13 @@ const styles = StyleSheet.create({
     backgroundColor: '#333333',
     opacity: 0.7,
     flexDirection: 'column',
-    alignItems: 'center',
-    height: Dimensions.get('window').height / 2,
+    height: (Dimensions.get('window').height / 5) * 3,
   },
   row: {
     flexDirection: 'row',
     flexWrap: 'nowrap',
     alignItems: 'center',
-    paddingHorizontal: 20,
+    paddingHorizontal: 45,
     flex: 1,
     // borderColor: 'blue',
     // borderWidth: 2,
@@ -203,19 +207,13 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   zipError: {
-    // flex: 1,
     fontSize: 14,
     textAlign: 'center',
     color: 'white',
     backgroundColor: 'red',
     borderRadius: 10,
-    marginHorizontal: 30,
+    marginHorizontal: 20,
     marginTop: 5,
-  },
-  forecast: {
-    flex: 2,
-    borderColor: 'yellow',
-    borderWidth: 2,
   },
 });
 
