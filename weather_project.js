@@ -144,7 +144,7 @@ class WeatherProject extends Component {
               <View style={styles.zipErrorContainer}>{this._errorMsg()}</View>
             </View>
           </View>
-          {/* {weatherForecast} */}
+          {weatherForecast}
           <View style={styles.forecast}>
             <Text>hello</Text>
           </View>
