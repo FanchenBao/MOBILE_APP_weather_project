@@ -6,6 +6,7 @@ import {
   TextInput,
   Dimensions,
   ImageBackground,
+  ActivityIndicator,
 } from 'react-native';
 import validate from 'validate.js';
 import NetInfo from '@react-native-community/netinfo';
@@ -31,6 +32,7 @@ class WeatherProject extends Component {
       // },
       forecast: null,
       hasInternet: false,
+      waiting: false,
     };
     this.unsubscribe = null; // dummy value. It will be set later.
   }
@@ -56,7 +58,9 @@ class WeatherProject extends Component {
   async _setStateForecast(zipInput) {
     try {
       let curr_forecast = await fetchWeatherInfo(zipInput);
-      this.setState({forecast: curr_forecast}, () => console.log(this.state));
+      this.setState({forecast: curr_forecast, waiting: false}, () =>
+        console.log(this.state),
+      );
     } catch (error) {
       console.error(error);
     }
@@ -74,9 +78,14 @@ class WeatherProject extends Component {
   _handleZipInput(zipInput) {
     // this.setState({hasModified: true, zip: zipInput});
     if (this._isZipValid(zipInput)) {
-      this.setState({zipIsValid: true, hasModified: true, zip: zipInput});
-      // zip code input successful and it is different from previous input
-      this._setStateForecast(zipInput);
+      this.setState({
+        zipIsValid: true,
+        hasModified: true,
+        zip: zipInput,
+        waiting: true,
+      });
+      // zip code input successful. Force a one second delay to show spinner
+      setTimeout(() => this._setStateForecast(zipInput), 1000);
     } else {
       // input invalid. record zip input, reset forecast, and set error msg type
       this.setState({
@@ -114,6 +123,15 @@ class WeatherProject extends Component {
       return (
         <Text style={[styles.bubble, styles.warning]}>{'No  Internet'}</Text>
       );
+    }
+  }
+
+  /** Display spinner if app is waiting on API call */
+  _waiting() {
+    if (this.state.waiting) {
+      return <ActivityIndicator size="small" color="#00ffff" />;
+    } else {
+      return null;
     }
   }
 
@@ -171,6 +189,7 @@ class WeatherProject extends Component {
               <View style={styles.zipErrorContainer}>{this._errorMsg()}</View>
             </View>
           </View>
+          <View style={styles.spinnerContainer}>{this._waiting()}</View>
           {weatherForecast}
         </View>
       </ImageBackground>
@@ -201,6 +220,10 @@ const styles = StyleSheet.create({
     flex: 1,
     // borderColor: 'blue',
     // borderWidth: 2,
+  },
+  spinnerContainer: {
+    flex: 0.4,
+    justifyContent: 'center',
   },
   zipContainer: {
     flex: 1,
