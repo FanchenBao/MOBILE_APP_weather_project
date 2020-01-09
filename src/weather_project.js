@@ -12,6 +12,7 @@ import validate from 'validate.js';
 import NetInfo from '@react-native-community/netinfo';
 import {Forecast, forecastStyles} from './forecast.js';
 import {fetchWeatherInfo} from './fetch_weather_info.js'; // a function
+import {ErrorBubble, WarningBubble} from './style_components.js';
 
 /** The main class aggregating all app functionalities. */
 class WeatherProject extends Component {
@@ -109,20 +110,18 @@ class WeatherProject extends Component {
           // not been modified, meaning the app has not been used yet, do not show
           // error.
           return this.state.hasModified ? (
-            <Text style={[styles.bubble, styles.error]}>Zip required</Text>
+            <ErrorBubble>Zip required</ErrorBubble>
           ) : null;
         } else {
           // invalid zip code format.
-          return <Text style={[styles.bubble, styles.error]}>Zip INVALID</Text>;
+          return <ErrorBubble>Zip INVALID</ErrorBubble>;
         }
       } else {
         return null;
       }
     } else {
       // no internet connection, report error
-      return (
-        <Text style={[styles.bubble, styles.warning]}>{'No  Internet'}</Text>
-      );
+      return <WarningBubble>{'No Internet'}</WarningBubble>;
     }
   }
 
@@ -248,20 +247,6 @@ const styles = StyleSheet.create({
   mainText: {fontSize: baseFontSize, color: '#FFFFFF'},
   zipErrorContainer: {
     flex: 1,
-  },
-  bubble: {
-    fontSize: 14,
-    textAlign: 'center',
-    color: 'white',
-    borderRadius: 10,
-    marginHorizontal: 10,
-    marginTop: 5,
-  },
-  error: {
-    backgroundColor: 'red',
-  },
-  warning: {
-    backgroundColor: 'orange',
   },
 });
 

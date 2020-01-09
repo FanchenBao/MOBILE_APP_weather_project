@@ -24,7 +24,7 @@ class ForecastCategoryText extends Component {
     return (
       <Text
         style={[
-          styles.smallText,
+          styles.mediumText,
           styles.bold,
           styles.category,
           styles.weatherColor,
@@ -38,7 +38,27 @@ class ForecastCategoryText extends Component {
 class ForecastContentText extends Component {
   render() {
     return (
-      <Text style={[styles.smallText, styles.content, styles.weatherColor]}>
+      <Text style={[styles.mediumText, styles.content, styles.weatherColor]}>
+        {this.props.children}
+      </Text>
+    );
+  }
+}
+
+class ErrorBubble extends Component {
+  render() {
+    return (
+      <Text style={[styles.smallText, styles.bubble, styles.error]}>
+        {this.props.children}
+      </Text>
+    );
+  }
+}
+
+class WarningBubble extends Component {
+  render() {
+    return (
+      <Text style={[styles.smallText, styles.bubble, styles.warning]}>
         {this.props.children}
       </Text>
     );
@@ -50,8 +70,16 @@ const styles = StyleSheet.create({
     color: '#66ff33',
   },
   error: {
+    textAlign: 'center',
     color: 'white',
     backgroundColor: 'red',
+    borderRadius: 10,
+    padding: 10,
+  },
+  warning: {
+    textAlign: 'center',
+    color: 'white',
+    backgroundColor: 'orange',
     borderRadius: 10,
     padding: 10,
   },
@@ -68,18 +96,26 @@ const styles = StyleSheet.create({
   bigText: {
     fontSize: 40,
   },
-  smallText: {
+  mediumText: {
     fontSize: 20,
+  },
+  smallText: {
+    fontSize: 14,
   },
   bold: {
     fontWeight: 'bold',
   },
-  errorText: {
-    color: 'white',
-    backgroundColor: 'red',
-    borderRadius: 10,
-    padding: 10,
+  bubble: {
+    marginHorizontal: 10,
+    marginTop: 5,
   },
 });
 
-export {CityText, CityNotFoundText, ForecastCategoryText, ForecastContentText};
+export {
+  CityText,
+  CityNotFoundText,
+  ForecastCategoryText,
+  ForecastContentText,
+  ErrorBubble,
+  WarningBubble,
+};
