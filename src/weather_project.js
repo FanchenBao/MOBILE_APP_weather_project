@@ -6,7 +6,7 @@ import {
   TextInput,
   Dimensions,
   ImageBackground,
-  ActivityIndicator,
+  ProgressBarAndroid,
 } from 'react-native';
 import validate from 'validate.js';
 import NetInfo from '@react-native-community/netinfo';
@@ -129,7 +129,8 @@ class WeatherProject extends Component {
   /** Display spinner if app is waiting on API call */
   _waiting() {
     if (this.state.waiting) {
-      return <ActivityIndicator size="small" color="#00ffff" />;
+      // return <ActivityIndicator size="small" color="#00ffff" />;
+      return <ProgressBarAndroid styleAttr="Horizontal" color="#00ffff" />;
     } else {
       return null;
     }
@@ -173,6 +174,7 @@ class WeatherProject extends Component {
         resizeMode="cover"
         style={styles.backdrop}>
         <View style={styles.overlay}>
+          <View style={styles.waitContainer}>{this._waiting()}</View>
           <View style={styles.row}>
             <Text style={styles.mainText}>{'Current weather for '}</Text>
             <View style={styles.zipContainer}>
@@ -189,7 +191,6 @@ class WeatherProject extends Component {
               <View style={styles.zipErrorContainer}>{this._errorMsg()}</View>
             </View>
           </View>
-          <View style={styles.spinnerContainer}>{this._waiting()}</View>
           {weatherForecast}
         </View>
       </ImageBackground>
@@ -221,9 +222,9 @@ const styles = StyleSheet.create({
     // borderColor: 'blue',
     // borderWidth: 2,
   },
-  spinnerContainer: {
+  waitContainer: {
     flex: 0.4,
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
   },
   zipContainer: {
     flex: 1,
