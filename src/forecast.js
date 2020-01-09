@@ -1,5 +1,11 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
+import {
+  CityText,
+  CityNotFoundText,
+  ForecastCategoryText,
+  ForecastContentText,
+} from './style_components.js';
 
 /** A class to wrap the display of weather forecast */
 class Forecast extends Component {
@@ -9,11 +15,9 @@ class Forecast extends Component {
    */
   _cityOrError() {
     if (this.props.errorMsg === '') {
-      return <Text style={forecastStyles.cityText}>{this.props.name}</Text>;
+      return <CityText>{this.props.name}</CityText>;
     } else {
-      return (
-        <Text style={forecastStyles.errorText}>{this.props.errorMsg}</Text>
-      );
+      return <CityNotFoundText>{this.props.errorMsg}</CityNotFoundText>;
     }
   }
 
@@ -25,16 +29,12 @@ class Forecast extends Component {
       return (
         <View style={forecastStyles.rowTwo}>
           <View style={forecastStyles.category}>
-            <Text style={forecastStyles.categoryText}>Condition:</Text>
-            <Text style={forecastStyles.categoryText}>Temperature:</Text>
+            <ForecastCategoryText>Condition:</ForecastCategoryText>
+            <ForecastCategoryText>Temperature:</ForecastCategoryText>
           </View>
           <View style={forecastStyles.content}>
-            <Text style={forecastStyles.contentText}>
-              {this.props.description}
-            </Text>
-            <Text style={forecastStyles.contentText}>{`${
-              this.props.temp
-            } °F`}</Text>
+            <ForecastContentText>{this.props.description}</ForecastContentText>
+            <ForecastContentText>{`${this.props.temp} °F`}</ForecastContentText>
           </View>
         </View>
       );
@@ -53,9 +53,6 @@ class Forecast extends Component {
   }
 }
 
-const bigTextSize = 40;
-const regTextSize = 20;
-const textColor = '#66ff33';
 const forecastStyles = StyleSheet.create({
   container: {
     flex: 2,
@@ -84,14 +81,6 @@ const forecastStyles = StyleSheet.create({
     //borderColor: 'brown',
     //borderWidth: 2,
   },
-  categoryText: {
-    fontSize: regTextSize,
-    marginLeft: 15,
-    color: textColor,
-    fontWeight: 'bold',
-    //borderColor: 'hotpink',
-    //borderWidth: 2,
-  },
   content: {
     flex: 1,
     flexDirection: 'column',
@@ -99,24 +88,6 @@ const forecastStyles = StyleSheet.create({
     justifyContent: 'space-evenly',
     //borderColor: 'purple',
     //borderWidth: 2,
-  },
-  contentText: {
-    fontSize: regTextSize,
-    color: textColor,
-    marginRight: 30,
-    //borderColor: 'lemonchiffon',
-    //borderWidth: 2,
-  },
-  cityText: {
-    fontSize: bigTextSize,
-    color: textColor,
-  },
-  errorText: {
-    fontSize: bigTextSize,
-    color: 'white',
-    backgroundColor: 'red',
-    borderRadius: 10,
-    padding: 10,
   },
 });
 

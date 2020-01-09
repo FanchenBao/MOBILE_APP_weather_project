@@ -16,7 +16,7 @@ function makeUrl(zip) {
  * message if it occurrs.
  *
  * @param {string} zip A valid zip code input.
- * @returns {Promist} A Promise containing a mapping for all needed info.
+ * @returns {Promise} A Promise containing a mapping for all needed info.
  */
 async function fetchWeatherInfo(zip) {
   try {
