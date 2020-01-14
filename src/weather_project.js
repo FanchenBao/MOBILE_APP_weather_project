@@ -9,11 +9,12 @@ import {
   ProgressBarAndroid,
 } from 'react-native';
 import NetInfo from '@react-native-community/netinfo';
-import {Forecast, forecastStyles} from './forecast.js';
+import {Forecast, forecastStyles} from './components/forecast.js';
 import {fetchWeatherInfo} from './functions/fetch_weather_info.js';
 import {isZipValid} from './functions/zipInputValidation.js';
 import {getFineLocationPermission} from './functions/geolocation.js';
-import {ErrorBubble, WarningBubble} from './style_components.js';
+import {ErrorBubble, WarningBubble} from './components/style_components.js';
+import {CurrLocButton} from './components/currLocButton.js';
 
 /** The main class aggregating all app functionalities. */
 class WeatherProject extends Component {
@@ -66,8 +67,9 @@ class WeatherProject extends Component {
    *
    * @param {string} zipInput The user-input zip code.
    */
-  _handleZipInput(zipInput) {
+  _handleZipInput = event => {
     // this.setState({hasModified: true, zip: zipInput});
+    let zipInput = event.nativeEvent.text;
     if (isZipValid(zipInput)) {
       this.setState({
         zipIsValid: true,
@@ -86,7 +88,7 @@ class WeatherProject extends Component {
         hasModified: true,
       });
     }
-  }
+  };
 
   /**
    * Produce error message based on this.state.
@@ -176,14 +178,13 @@ class WeatherProject extends Component {
                 placeholder={'zip code'}
                 placeholderTextColor={'grey'}
                 keyboardType={'number-pad'}
-                onSubmitEditing={event =>
-                  this._handleZipInput(event.nativeEvent.text)
-                }
+                onSubmitEditing={this._handleZipInput}
                 editable={this.state.hasInternet}
               />
               <View style={styles.zipErrorContainer}>{this._errorMsg()}</View>
             </View>
           </View>
+          <CurrLocButton />
           {weatherForecast}
         </View>
       </ImageBackground>
@@ -212,12 +213,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 40,
     flex: 1,
-    // borderColor: 'blue',
-    // borderWidth: 2,
+    borderColor: 'blue',
+    borderWidth: 2,
   },
   waitContainer: {
-    flex: 0.4,
+    flex: 0.1,
     justifyContent: 'flex-start',
+    // borderColor: 'red',
+    // borderWidth: 2,
   },
   zipContainer: {
     flex: 1,

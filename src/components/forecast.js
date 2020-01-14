@@ -57,8 +57,8 @@ const forecastStyles = StyleSheet.create({
   container: {
     flex: 2,
     flexDirection: 'column',
-    //borderColor: 'yellow',
-    //borderWidth: 2,
+    borderColor: 'yellow',
+    borderWidth: 2,
   },
   rowOne: {
     flex: 1,
