@@ -7,12 +7,14 @@ import {
   Dimensions,
   ImageBackground,
   ProgressBarAndroid,
+  PermissionsAndroid,
 } from 'react-native';
-import validate from 'validate.js';
 import NetInfo from '@react-native-community/netinfo';
 import {Forecast, forecastStyles} from './forecast.js';
-import {fetchWeatherInfo} from './fetch_weather_info.js'; // a function
+import {fetchWeatherInfo} from './functions/fetch_weather_info.js';
+import {isZipValid} from './functions/zipInputValidation.js';
 import {ErrorBubble, WarningBubble} from './style_components.js';
+import Geolocation from 'react-native-geolocation-service';
 
 /** The main class aggregating all app functionalities. */
 class WeatherProject extends Component {
@@ -36,17 +38,6 @@ class WeatherProject extends Component {
       waiting: false,
     };
     this.unsubscribe = null; // dummy value. It will be set later.
-  }
-
-  /**
-   * Check whether the input zip code, which is currently in this.state, is of
-   * valid format.If it is valid, return true, otherwise false.
-   *
-   * @param {string} zipInput The user-input zip code.
-   * @returns {boolean} true if validation passes; otherwise false.
-   */
-  _isZipValid(zipInput) {
-    return validate({zip: zipInput}, constraints) === undefined ? true : false;
   }
 
   /**
@@ -78,7 +69,7 @@ class WeatherProject extends Component {
    */
   _handleZipInput(zipInput) {
     // this.setState({hasModified: true, zip: zipInput});
-    if (this._isZipValid(zipInput)) {
+    if (isZipValid(zipInput)) {
       this.setState({
         zipIsValid: true,
         hasModified: true,
@@ -135,16 +126,73 @@ class WeatherProject extends Component {
     }
   }
 
+  async _geolocationTest() {
+    try {
+      let hasLocationPermission = await PermissionsAndroid.check(
+        PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+      );
+      if (hasLocationPermission) {
+        Geolocation.getCurrentPosition(
+          position => {
+            console.log(position);
+          },
+          error => {
+            // See error code charts below.
+            console.log(error.code, error.message);
+          },
+          {
+            enableHighAccuracy: true,
+            timeout: 15000,
+            maximumAge: 10000,
+          },
+        );
+      } else {
+        console.log('Not allowed to access fine location. Ask for permission');
+        let userPerm = await this._getFineLocationPermission();
+        console.log(userPerm);
+        if (userPerm === PermissionsAndroid.RESULTS.GRANTED) {
+          console.log('Geolocation permission granted');
+          this._geolocationTest();
+        } else {
+          console.log('Geolocation permission denied.');
+        }
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async _getFineLocationPermission() {
+    try {
+      let userDecision = await PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+        {
+          title: 'Weather Project App Geolocation Permission',
+          message:
+            'Weathr Project App needs access to your geolocation to provide local weather information. Click "Proceed" to allow or deny Weather Project App\'s request.',
+          buttonNeutral: 'Proceed',
+        },
+      );
+      return userDecision;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   componentDidMount() {
     // subscribe to NetInfo
     this.unsubscribe = NetInfo.addEventListener(state =>
       this.setState({hasInternet: state.isInternetReachable}),
     );
+
+    this._geolocationTest();
+    // Geolocation.watchPosition((location) => console.log(location), error => console.error(error));
   }
 
   componentWillUnMount() {
     // unsubscribe to NetInfo to avoid memory leak.
     this.unsubscribe();
+    Geolocation.stopObserving();
   }
 
   render() {
@@ -169,7 +217,7 @@ class WeatherProject extends Component {
 
     return (
       <ImageBackground
-        source={require('./background.jpeg')}
+        source={require('./images/background.jpeg')}
         resizeMode="cover"
         style={styles.backdrop}>
         <View style={styles.overlay}>
@@ -249,15 +297,5 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
-
-const constraints = {
-  zip: {
-    // do not check for empty value here, because the regex pattern already
-    // deems empty value as invalid
-    format: {
-      pattern: /\d{5}/, // regex pattern must be enclosed by forward slashes
-    },
-  },
-};
 
 export {WeatherProject};
