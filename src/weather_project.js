@@ -7,14 +7,13 @@ import {
   Dimensions,
   ImageBackground,
   ProgressBarAndroid,
-  PermissionsAndroid,
 } from 'react-native';
 import NetInfo from '@react-native-community/netinfo';
 import {Forecast, forecastStyles} from './forecast.js';
 import {fetchWeatherInfo} from './functions/fetch_weather_info.js';
 import {isZipValid} from './functions/zipInputValidation.js';
+import {getFineLocationPermission} from './functions/geolocation.js';
 import {ErrorBubble, WarningBubble} from './style_components.js';
-import Geolocation from 'react-native-geolocation-service';
 
 /** The main class aggregating all app functionalities. */
 class WeatherProject extends Component {
@@ -126,73 +125,20 @@ class WeatherProject extends Component {
     }
   }
 
-  async _geolocationTest() {
-    try {
-      let hasLocationPermission = await PermissionsAndroid.check(
-        PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-      );
-      if (hasLocationPermission) {
-        Geolocation.getCurrentPosition(
-          position => {
-            console.log(position);
-          },
-          error => {
-            // See error code charts below.
-            console.log(error.code, error.message);
-          },
-          {
-            enableHighAccuracy: true,
-            timeout: 15000,
-            maximumAge: 10000,
-          },
-        );
-      } else {
-        console.log('Not allowed to access fine location. Ask for permission');
-        let userPerm = await this._getFineLocationPermission();
-        console.log(userPerm);
-        if (userPerm === PermissionsAndroid.RESULTS.GRANTED) {
-          console.log('Geolocation permission granted');
-          this._geolocationTest();
-        } else {
-          console.log('Geolocation permission denied.');
-        }
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
-  async _getFineLocationPermission() {
-    try {
-      let userDecision = await PermissionsAndroid.request(
-        PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-        {
-          title: 'Weather Project App Geolocation Permission',
-          message:
-            'Weathr Project App needs access to your geolocation to provide local weather information. Click "Proceed" to allow or deny Weather Project App\'s request.',
-          buttonNeutral: 'Proceed',
-        },
-      );
-      return userDecision;
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
   componentDidMount() {
     // subscribe to NetInfo
     this.unsubscribe = NetInfo.addEventListener(state =>
       this.setState({hasInternet: state.isInternetReachable}),
     );
 
-    this._geolocationTest();
-    // Geolocation.watchPosition((location) => console.log(location), error => console.error(error));
+    // ask permissio for geolocation. Once permission 'granted' or
+    // 'never ask again', this function won't be triggered any more.
+    getFineLocationPermission();
   }
 
   componentWillUnMount() {
     // unsubscribe to NetInfo to avoid memory leak.
     this.unsubscribe();
-    Geolocation.stopObserving();
   }
 
   render() {
