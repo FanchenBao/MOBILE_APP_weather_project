@@ -78,7 +78,7 @@ class CurrLocButton extends PureComponent {
   };
 
   render() {
-    console.log('render button');
+    // console.log('render button');
     return (
       <TouchableHighlight
         style={styles.touchable}

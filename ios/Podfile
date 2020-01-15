@@ -36,6 +36,8 @@ target 'WeatherProject' do
 
   pod 'react-native-netinfo', :path => '../node_modules/@react-native-community/netinfo'
 
+  pod 'react-native-cameraroll', :path => '../node_modules/@react-native-community/cameraroll'
+
   target 'WeatherProjectTests' do
     inherit! :search_paths
     # Pods for testing

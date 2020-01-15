@@ -5,7 +5,6 @@ import {
   View,
   TextInput,
   Dimensions,
-  ImageBackground,
   ProgressBarAndroid,
 } from 'react-native';
 import NetInfo from '@react-native-community/netinfo';
@@ -15,6 +14,7 @@ import {isZipValid} from './functions/zipInputValidation.js';
 import {getFineLocationPermission} from './functions/geolocation.js';
 import {ErrorBubble} from './components/style_components.js';
 import {CurrLocButton} from './components/currLocButton.js';
+import {PhotoBackdrop} from './components/photo_backdrop.js';
 
 /** The main class aggregating all app functionalities. */
 class WeatherProject extends Component {
@@ -166,10 +166,7 @@ class WeatherProject extends Component {
 
   render() {
     return (
-      <ImageBackground
-        source={require('./images/background.jpeg')}
-        resizeMode="cover"
-        style={styles.backdrop}>
+      <PhotoBackdrop>
         <View style={styles.overlay}>
           <View style={styles.waitContainer}>{this._renderWaiting()}</View>
           <View style={styles.row}>
@@ -193,7 +190,7 @@ class WeatherProject extends Component {
           />
           {this._renderForecast()}
         </View>
-      </ImageBackground>
+      </PhotoBackdrop>
     );
   }
 }
