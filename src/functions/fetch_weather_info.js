@@ -1,3 +1,6 @@
+import AsyncStorage from '@react-native-community/async-storage';
+import {CONFIG} from '../config.js';
+
 const WEATHER_API_KEY = 'bbeb34ebf60ad50f7893e7440a1e2b0b';
 const API_STEM = 'http://api.openweathermap.org/data/2.5/weather?';
 
@@ -27,17 +30,24 @@ async function fetchWeatherInfo(query) {
   try {
     let resp = await fetch(urlMakers[query.type](query.value));
     let respJson = await resp.json();
+    let res = null;
     if (respJson.cod === 200) {
-      return {
+      res = {
         main: respJson.weather[0].main,
         description: respJson.weather[0].description,
         temp: respJson.main.temp,
         name: respJson.name,
         errorMsg: '',
       };
+      // save the last successful weather info for cache.
+      await AsyncStorage.setItem(
+        CONFIG.asyncStorageKeys.cachedWeatherInfo,
+        JSON.stringify(res),
+      );
     } else {
-      return {errorMsg: respJson.message};
+      res = {errorMsg: respJson.message};
     }
+    return res;
   } catch (error) {
     console.error(error);
   }

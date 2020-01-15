@@ -8,6 +8,8 @@ import {
   ProgressBarAndroid,
 } from 'react-native';
 import NetInfo from '@react-native-community/netinfo';
+import AsyncStorage from '@react-native-community/async-storage';
+
 import {Forecast, forecastStyles} from './components/forecast.js';
 import {fetchWeatherInfo} from './functions/fetch_weather_info.js';
 import {isZipValid} from './functions/zipInputValidation.js';
@@ -15,6 +17,7 @@ import {getFineLocationPermission} from './functions/get_user_permission.js';
 import {ErrorBubble} from './components/style_components.js';
 import {CurrLocButton} from './components/currLocButton.js';
 import {PhotoBackdrop} from './components/photo_backdrop.js';
+import {CONFIG} from './config.js';
 
 /** The main class aggregating all app functionalities. */
 class WeatherProject extends Component {
@@ -157,6 +160,17 @@ class WeatherProject extends Component {
     // ask permissio for geolocation. Once permission 'granted' or
     // 'never ask again', this function won't be triggered any more.
     getFineLocationPermission().then(userDecision => null);
+
+    // load cached weather info from the latest use.
+    AsyncStorage.getItem(CONFIG.asyncStorageKeys.cachedWeatherInfo).then(
+      value => {
+        if (value !== null) {
+          this.setState({forecast: JSON.parse(value), waiting: false});
+        } else {
+          console.log('No cached weahther info');
+        }
+      },
+    );
   }
 
   componentWillUnMount() {
