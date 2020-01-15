@@ -20,8 +20,9 @@ class PhotoBackdrop extends Component {
    * @param {string} userDecision User's decision whether to grant the app
    * permission to read external storage.
    */
-  _getMostRecentPhoto = async userDecision => {
+  _getMostRecentPhoto = async () => {
     try {
+      let userDecision = await getReadExternalStoragePermission();
       if (userDecision === PermissionsAndroid.RESULTS.GRANTED) {
         let photos = await CameraRoll.getPhotos({first: 1});
         this.setState({photoURIs: photos.edges.map(ele => ele.node.image.uri)});
@@ -36,9 +37,7 @@ class PhotoBackdrop extends Component {
   };
 
   componentDidMount() {
-    getReadExternalStoragePermission().then(userDecision =>
-      this._getMostRecentPhoto(userDecision),
-    );
+    this._getMostRecentPhoto();
   }
 
   render() {

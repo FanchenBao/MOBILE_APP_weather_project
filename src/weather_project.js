@@ -160,7 +160,7 @@ class WeatherProject extends Component {
 
     // ask permissio for geolocation. Once permission 'granted' or
     // 'never ask again', this function won't be triggered any more.
-    getFineLocationPermission().then(userDecision => null);
+    getFineLocationPermission();
 
     // load cached weather info from the latest use.
     AsyncStorage.getItem(CONFIG.asyncStorageKeys.cachedWeatherInfo).then(
