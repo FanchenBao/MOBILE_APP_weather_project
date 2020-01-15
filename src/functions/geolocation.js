@@ -1,6 +1,6 @@
 import {PermissionsAndroid} from 'react-native';
 import Geolocation from 'react-native-geolocation-service';
-import {getUserPermission} from './getUserPermission.js';
+import {getFineLocationPermission} from './get_user_permission.js';
 
 /**
  * Obtain geo location from the device.
@@ -29,12 +29,12 @@ async function getGeolocation(successCallback, errorCallback, denyCallback) {
       });
     } else {
       console.log('Not allowed to access fine location. Ask for permission');
-      let userPerm = await getFineLocationPermission();
-      if (userPerm === PermissionsAndroid.RESULTS.GRANTED) {
+      let userDecision = await getFineLocationPermission();
+      if (userDecision === PermissionsAndroid.RESULTS.GRANTED) {
         console.log('Geolocation permission granted');
-        getGeolocation(successCallback, errorCallback, denyCallback);
+        await getGeolocation(successCallback, errorCallback, denyCallback);
       } else {
-        console.log(`Geolocation denied. User decision: ${userPerm}`);
+        console.log(`Geolocation denied. User decision: ${userDecision}`);
         denyCallback();
       }
     }
@@ -43,14 +43,4 @@ async function getGeolocation(successCallback, errorCallback, denyCallback) {
   }
 }
 
-/**
- * Ask for user permission to access device's fine location.
- */
-const getFineLocationPermission = async () =>
-  getUserPermission(
-    PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-    'Weather Project App Geolocation Permission',
-    'Weathr Project App needs access to your geolocation to provide weather information for your current location.',
-  );
-
-export {getGeolocation, getFineLocationPermission};
+export {getGeolocation};

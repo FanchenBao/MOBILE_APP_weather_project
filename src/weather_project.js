@@ -11,7 +11,7 @@ import NetInfo from '@react-native-community/netinfo';
 import {Forecast, forecastStyles} from './components/forecast.js';
 import {fetchWeatherInfo} from './functions/fetch_weather_info.js';
 import {isZipValid} from './functions/zipInputValidation.js';
-import {getFineLocationPermission} from './functions/geolocation.js';
+import {getFineLocationPermission} from './functions/get_user_permission.js';
 import {ErrorBubble} from './components/style_components.js';
 import {CurrLocButton} from './components/currLocButton.js';
 import {PhotoBackdrop} from './components/photo_backdrop.js';
@@ -156,7 +156,7 @@ class WeatherProject extends Component {
 
     // ask permissio for geolocation. Once permission 'granted' or
     // 'never ask again', this function won't be triggered any more.
-    getFineLocationPermission();
+    getFineLocationPermission().then(userDecision => null);
   }
 
   componentWillUnMount() {
