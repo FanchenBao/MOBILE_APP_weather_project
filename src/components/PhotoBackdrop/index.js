@@ -1,12 +1,8 @@
 import React, {Component} from 'react';
-import {
-  StyleSheet,
-  Dimensions,
-  ImageBackground,
-  PermissionsAndroid,
-} from 'react-native';
+import {ImageBackground, PermissionsAndroid} from 'react-native';
 import CameraRoll from '@react-native-community/cameraroll';
-import {getReadExternalStoragePermission} from '../functions/get_user_permission.js';
+import {getReadExternalStoragePermission} from '../../functions/get_user_permission.js';
+import {styles} from './style.js';
 
 class PhotoBackdrop extends Component {
   constructor(props) {
@@ -57,14 +53,5 @@ class PhotoBackdrop extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  backdrop: {
-    flex: 1,
-    flexDirection: 'column',
-    width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height,
-  },
-});
 
 export {PhotoBackdrop};

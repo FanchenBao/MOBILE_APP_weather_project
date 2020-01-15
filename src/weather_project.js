@@ -17,7 +17,7 @@ import {isZipValid} from './functions/zip_input_validation.js';
 import {getFineLocationPermission} from './functions/get_user_permission.js';
 import {ErrorBubble} from './components/style_components.js';
 import {CurrLocButton} from './components/CurrLocButton/index.js';
-import {PhotoBackdrop} from './components/photo_backdrop.js';
+import {PhotoBackdrop} from './components/PhotoBackdrop/index.js';
 import {CONFIG} from './config.js';
 
 /** The main class aggregating all app functionalities. */
