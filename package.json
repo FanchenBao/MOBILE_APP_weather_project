@@ -6,7 +6,7 @@
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "start": "react-native start",
-    "test": "jest",
+    "test": "jest --coverage",
     "lint": "eslint .",
     "postinstall": "rm -rf .git/hooks/pre-push && node node_modules/husky/bin/install.js && rm -rf .git/hooks/pre-commit"
   },
@@ -33,6 +33,9 @@
     "preset": "react-native",
     "setupFiles": [
       "./jest.setup.js"
+    ],
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
     ]
   },
   "husky": {
