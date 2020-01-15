@@ -8,6 +8,7 @@ personal touch to it. It allows user to input a zip code, and returns the curren
 * If a correct zip code is supplied, the app displays the city name, current weather condition, and current temperature. If an input zip code is incorrect (e.g. 99999), the app displays error message.
 * Provide a "User Current Location" button to allow weather info query for the device's current location.
 * Use the latest photo on device as the background via `@react-native-community/cameraroll`.
+* Enable caching via `@react-native-community/async-storage`. This allows the app to load the last successful weather info query result before user makes a new query.
 
 ## Notes
 1. Tested only on android devices so far.
