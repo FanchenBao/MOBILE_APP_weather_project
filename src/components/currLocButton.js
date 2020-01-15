@@ -1,8 +1,30 @@
 import React, {Component} from 'react';
 import {Text, TouchableHighlight, StyleSheet} from 'react-native';
+import {getGeolocation} from '../functions/geolocation.js';
 
 class CurrLocButton extends Component {
-  _onPress = () => console.log('currLoButton pressed');
+  constructor(props) {
+    super(props);
+    this.coord = null;
+  }
+
+  _onPress = async () => {
+    this.props.setToWait(); // force display android progress bar
+    try {
+      await getGeolocation(position => {
+        setTimeout(() => console.log(position), 1000); // force wait 1s
+        this.props.onPressCB({
+          type: 'coord',
+          value: {
+            lat: position.coords.latitude,
+            lon: position.coords.longitude,
+          },
+        });
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   render() {
     return (
@@ -25,6 +47,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginHorizontal: 100,
+    marginVertical: 5,
     borderRadius: 10,
   },
   buttonText: {

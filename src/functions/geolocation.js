@@ -1,16 +1,14 @@
 import {PermissionsAndroid} from 'react-native';
 import Geolocation from 'react-native-geolocation-service';
 
-async function getGeolocation() {
+async function getGeolocation(successCallback) {
   try {
     let hasLocationPermission = await PermissionsAndroid.check(
       PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
     );
     if (hasLocationPermission) {
       Geolocation.getCurrentPosition(
-        position => {
-          console.log(position);
-        },
+        successCallback,
         error => {
           // See error code charts below.
           console.log(error.code, error.message);

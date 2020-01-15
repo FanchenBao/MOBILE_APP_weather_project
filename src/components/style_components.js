@@ -74,14 +74,14 @@ const styles = StyleSheet.create({
     color: 'white',
     backgroundColor: 'red',
     borderRadius: 10,
-    padding: 10,
+    padding: 2,
   },
   warning: {
     textAlign: 'center',
     color: 'white',
     backgroundColor: 'orange',
     borderRadius: 10,
-    padding: 10,
+    padding: 2,
   },
   category: {
     marginLeft: 15,

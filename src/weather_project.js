@@ -45,18 +45,20 @@ class WeatherProject extends Component {
    * this.state.forecast accordingly. Note that other states are set here
    * as well to avoid extra call on this.setState().
    *
-   * @param {string} zipInput The user-input zip code.
+   * @param {Map} query The query type for weather info, e.g. zip code,
+   * coordinate, etc. Must follow this format
+   * {type: <type name>, value: <query value>}
    */
-  async _setStateForecast(zipInput) {
+  _setStateForecast = async query => {
     try {
-      let curr_forecast = await fetchWeatherInfo(zipInput);
+      let curr_forecast = await fetchWeatherInfo(query);
       this.setState({forecast: curr_forecast, waiting: false}, () =>
         console.log(this.state),
       );
     } catch (error) {
       console.error(error);
     }
-  }
+  };
 
   /**
    * Handle user-input zip code.
@@ -65,7 +67,7 @@ class WeatherProject extends Component {
    * the validity of input. If it is valid, pull weather forecast. Otherwise,
    * set the state to reflect invalid zip code input.
    *
-   * @param {string} zipInput The user-input zip code.
+   * @param {string} event The event passed by TextInput upon submitting.
    */
   _handleZipInput = event => {
     // this.setState({hasModified: true, zip: zipInput});
@@ -78,7 +80,10 @@ class WeatherProject extends Component {
         waiting: true,
       });
       // zip code input successful. Force a one second delay to show spinner
-      setTimeout(() => this._setStateForecast(zipInput), 1000);
+      setTimeout(
+        () => this._setStateForecast({type: 'zip', value: zipInput}),
+        1000,
+      );
     } else {
       // input invalid. record zip input, reset forecast, and set error msg type
       this.setState({
@@ -118,7 +123,7 @@ class WeatherProject extends Component {
   }
 
   /** Display spinner if app is waiting on API call */
-  _waiting() {
+  _renderWaiting() {
     if (this.state.waiting) {
       // return <ActivityIndicator size="small" color="#00ffff" />;
       return <ProgressBarAndroid styleAttr="Horizontal" color="#00ffff" />;
@@ -126,6 +131,8 @@ class WeatherProject extends Component {
       return null;
     }
   }
+
+  _setToWait = () => this.setState({waiting: true});
 
   componentDidMount() {
     // subscribe to NetInfo
@@ -169,7 +176,7 @@ class WeatherProject extends Component {
         resizeMode="cover"
         style={styles.backdrop}>
         <View style={styles.overlay}>
-          <View style={styles.waitContainer}>{this._waiting()}</View>
+          <View style={styles.waitContainer}>{this._renderWaiting()}</View>
           <View style={styles.row}>
             <Text style={styles.mainText}>{'Current weather for '}</Text>
             <View style={styles.zipContainer}>
@@ -184,7 +191,10 @@ class WeatherProject extends Component {
               <View style={styles.zipErrorContainer}>{this._errorMsg()}</View>
             </View>
           </View>
-          <CurrLocButton />
+          <CurrLocButton
+            onPressCB={this._setStateForecast}
+            setToWait={this._setToWait}
+          />
           {weatherForecast}
         </View>
       </ImageBackground>
