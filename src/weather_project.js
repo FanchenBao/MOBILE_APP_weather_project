@@ -10,7 +10,8 @@ import {
 import NetInfo from '@react-native-community/netinfo';
 import AsyncStorage from '@react-native-community/async-storage';
 
-import {Forecast, forecastStyles} from './components/forecast.js';
+import {Forecast} from './components/Forecast/index.js';
+import {styles as forecastStyles} from './components/Forecast/style.js';
 import {fetchWeatherInfo} from './functions/fetch_weather_info.js';
 import {isZipValid} from './functions/zip_input_validation.js';
 import {getFineLocationPermission} from './functions/get_user_permission.js';
