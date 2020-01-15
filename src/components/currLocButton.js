@@ -25,7 +25,7 @@ class CurrLocButton extends PureComponent {
    * @param {Map} position: Geolocation acquired from the device.
    */
   _successCallback = position => {
-    setTimeout(() => console.log(position), 100); // force wait
+    setTimeout(() => null, 100); // force wait
     this.props.setStateForecast({
       type: 'coord',
       value: {
@@ -78,6 +78,7 @@ class CurrLocButton extends PureComponent {
   };
 
   render() {
+    console.log('render button');
     return (
       <TouchableHighlight
         style={styles.touchable}
