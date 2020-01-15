@@ -1,6 +1,7 @@
 import React, {PureComponent} from 'react';
-import {Text, TouchableHighlight, StyleSheet} from 'react-native';
-import {getGeolocation} from '../functions/geolocation.js';
+import {Text, TouchableHighlight} from 'react-native';
+import {getGeolocation} from '../../functions/geolocation.js';
+import {styles} from './style.js';
 
 /**
  * A class for "Use Current Location" button.
@@ -90,22 +91,5 @@ class CurrLocButton extends PureComponent {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  touchable: {
-    flex: 0.5,
-    backgroundColor: 'white',
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginHorizontal: 100,
-    marginVertical: 5,
-    borderRadius: 10,
-    // borderColor: 'black',
-    // borderWidth: 2,
-  },
-  buttonText: {
-    fontSize: 18,
-  },
-});
 
 export {CurrLocButton};

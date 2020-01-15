@@ -12,10 +12,10 @@ import AsyncStorage from '@react-native-community/async-storage';
 
 import {Forecast, forecastStyles} from './components/forecast.js';
 import {fetchWeatherInfo} from './functions/fetch_weather_info.js';
-import {isZipValid} from './functions/zipInputValidation.js';
+import {isZipValid} from './functions/zip_input_validation.js';
 import {getFineLocationPermission} from './functions/get_user_permission.js';
 import {ErrorBubble} from './components/style_components.js';
-import {CurrLocButton} from './components/currLocButton.js';
+import {CurrLocButton} from './components/CurrLocButton/index.js';
 import {PhotoBackdrop} from './components/photo_backdrop.js';
 import {CONFIG} from './config.js';
 
