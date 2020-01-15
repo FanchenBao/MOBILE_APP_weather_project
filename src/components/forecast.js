@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {
   CityText,
-  CityNotFoundText,
+  ErrorText,
   ForecastCategoryText,
   ForecastContentText,
 } from './style_components.js';
@@ -17,7 +17,7 @@ class Forecast extends Component {
     if (this.props.errorMsg === '') {
       return <CityText>{this.props.name}</CityText>;
     } else {
-      return <CityNotFoundText>{this.props.errorMsg}</CityNotFoundText>;
+      return <ErrorText>{this.props.errorMsg}</ErrorText>;
     }
   }
 
@@ -57,8 +57,8 @@ const forecastStyles = StyleSheet.create({
   container: {
     flex: 2,
     flexDirection: 'column',
-    borderColor: 'yellow',
-    borderWidth: 2,
+    // borderColor: 'yellow',
+    // borderWidth: 2,
   },
   rowOne: {
     flex: 1,

@@ -15,11 +15,15 @@ const urlMakers = {
  *
  * @param {Map} queryTarget A map indicating which query type to use. For zip
  * code, queryTarget = {type: 'zip', value: <zip code>}. For coordinate,
- * queryTarget = {type: 'coord', value: {lat: <latitude>, lon: <longitude>}}
+ * queryTarget = {type: 'coord', value: {lat: <latitude>, lon: <longitude>}}.
+ * For error, queryTargt = {type: 'error', value: <error msg>}.
  * @returns {Promise} A Promise containing a mapping for all needed info.
  */
 async function fetchWeatherInfo(query) {
   console.log(query);
+  if (query.type === 'error') {
+    return {errorMsg: query.value};
+  }
   try {
     let resp = await fetch(urlMakers[query.type](query.value));
     let respJson = await resp.json();

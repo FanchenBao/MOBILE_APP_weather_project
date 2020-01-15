@@ -11,7 +11,7 @@ class CityText extends Component {
   }
 }
 
-class CityNotFoundText extends Component {
+class ErrorText extends Component {
   render() {
     return (
       <Text style={[styles.bigText, styles.error]}>{this.props.children}</Text>
@@ -48,17 +48,7 @@ class ForecastContentText extends Component {
 class ErrorBubble extends Component {
   render() {
     return (
-      <Text style={[styles.smallText, styles.bubble, styles.error]}>
-        {this.props.children}
-      </Text>
-    );
-  }
-}
-
-class WarningBubble extends Component {
-  render() {
-    return (
-      <Text style={[styles.smallText, styles.bubble, styles.warning]}>
+      <Text style={[styles.errorBubble, styles.smallText]}>
         {this.props.children}
       </Text>
     );
@@ -74,14 +64,8 @@ const styles = StyleSheet.create({
     color: 'white',
     backgroundColor: 'red',
     borderRadius: 10,
-    padding: 2,
-  },
-  warning: {
-    textAlign: 'center',
-    color: 'white',
-    backgroundColor: 'orange',
-    borderRadius: 10,
-    padding: 2,
+    padding: 10,
+    fontSize: 20,
   },
   category: {
     marginLeft: 15,
@@ -105,7 +89,12 @@ const styles = StyleSheet.create({
   bold: {
     fontWeight: 'bold',
   },
-  bubble: {
+  errorBubble: {
+    textAlign: 'center',
+    color: 'white',
+    backgroundColor: 'red',
+    borderRadius: 10,
+    padding: 2,
     marginHorizontal: 10,
     marginTop: 5,
   },
@@ -113,9 +102,8 @@ const styles = StyleSheet.create({
 
 export {
   CityText,
-  CityNotFoundText,
+  ErrorText,
   ForecastCategoryText,
   ForecastContentText,
   ErrorBubble,
-  WarningBubble,
 };

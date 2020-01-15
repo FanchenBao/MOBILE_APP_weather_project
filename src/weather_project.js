@@ -13,7 +13,7 @@ import {Forecast, forecastStyles} from './components/forecast.js';
 import {fetchWeatherInfo} from './functions/fetch_weather_info.js';
 import {isZipValid} from './functions/zipInputValidation.js';
 import {getFineLocationPermission} from './functions/geolocation.js';
-import {ErrorBubble, WarningBubble} from './components/style_components.js';
+import {ErrorBubble} from './components/style_components.js';
 import {CurrLocButton} from './components/currLocButton.js';
 
 /** The main class aggregating all app functionalities. */
@@ -82,7 +82,7 @@ class WeatherProject extends Component {
       // zip code input successful. Force a one second delay to show spinner
       setTimeout(
         () => this._setStateForecast({type: 'zip', value: zipInput}),
-        1000,
+        100,
       );
     } else {
       // input invalid. record zip input, reset forecast, and set error msg type
@@ -96,43 +96,57 @@ class WeatherProject extends Component {
   };
 
   /**
-   * Produce error message based on this.state.
+   * Produce error message for zip input.
    */
   _errorMsg() {
-    if (this.state.hasInternet) {
-      // all following checks makes sense if there is internet connection
-      if (!this.state.zipIsValid) {
-        if (this.state.zip === '') {
-          // no zip code input. If input has been modified, show error. If input has
-          // not been modified, meaning the app has not been used yet, do not show
-          // error.
-          return this.state.hasModified ? (
-            <ErrorBubble>Zip required</ErrorBubble>
-          ) : null;
-        } else {
-          // invalid zip code format.
-          return <ErrorBubble>Zip INVALID</ErrorBubble>;
-        }
+    if (!this.state.zipIsValid) {
+      if (this.state.zip === '') {
+        // no zip code input. If input has been modified, show error. If input has
+        // not been modified, meaning the app has not been used yet, do not show
+        // error.
+        return this.state.hasModified ? (
+          <ErrorBubble>Zip required</ErrorBubble>
+        ) : null;
       } else {
-        return null;
+        // invalid zip code format.
+        return <ErrorBubble>Zip INVALID</ErrorBubble>;
       }
-    } else {
-      // no internet connection, report error
-      return <WarningBubble>{'No Internet'}</WarningBubble>;
-    }
-  }
-
-  /** Display spinner if app is waiting on API call */
-  _renderWaiting() {
-    if (this.state.waiting) {
-      // return <ActivityIndicator size="small" color="#00ffff" />;
-      return <ProgressBarAndroid styleAttr="Horizontal" color="#00ffff" />;
     } else {
       return null;
     }
   }
 
+  /** Display horizontal progress bar if app is waiting on API call */
+  _renderWaiting = () =>
+    this.state.waiting ? (
+      <ProgressBarAndroid styleAttr="Horizontal" color="#00ffff" />
+    ) : null;
+
   _setToWait = () => this.setState({waiting: true});
+
+  _renderForecast() {
+    // Produce a Forecast component if forecast is available
+    if (!this.state.hasInternet) {
+      return <Forecast errorMsg={'No Internet'} />;
+    }
+    if (this.state.forecast !== null) {
+      if (this.state.forecast.errorMsg === '') {
+        return (
+          <Forecast
+            main={this.state.forecast.main}
+            description={this.state.forecast.description}
+            temp={this.state.forecast.temp}
+            errorMsg={''}
+            name={this.state.forecast.name}
+          />
+        );
+      } else {
+        return <Forecast errorMsg={this.state.forecast.errorMsg} />;
+      }
+    }
+
+    return <View style={forecastStyles.container} />; //place holder
+  }
 
   componentDidMount() {
     // subscribe to NetInfo
@@ -151,25 +165,6 @@ class WeatherProject extends Component {
   }
 
   render() {
-    // Placeholder
-    let weatherForecast = <View style={forecastStyles.container} />;
-    // Produce a Forecast component if forecast is available
-    if (this.state.forecast !== null) {
-      if (this.state.forecast.errorMsg === '') {
-        weatherForecast = (
-          <Forecast
-            main={this.state.forecast.main}
-            description={this.state.forecast.description}
-            temp={this.state.forecast.temp}
-            errorMsg={''}
-            name={this.state.forecast.name}
-          />
-        );
-      } else {
-        weatherForecast = <Forecast errorMsg={this.state.forecast.errorMsg} />;
-      }
-    }
-
     return (
       <ImageBackground
         source={require('./images/background.jpeg')}
@@ -192,10 +187,11 @@ class WeatherProject extends Component {
             </View>
           </View>
           <CurrLocButton
-            onPressCB={this._setStateForecast}
+            setStateForecast={this._setStateForecast}
             setToWait={this._setToWait}
+            hasInternet={this.state.hasInternet}
           />
-          {weatherForecast}
+          {this._renderForecast()}
         </View>
       </ImageBackground>
     );
@@ -223,8 +219,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 40,
     flex: 1,
-    borderColor: 'blue',
-    borderWidth: 2,
+    // borderColor: 'blue',
+    // borderWidth: 2,
   },
   waitContainer: {
     flex: 0.1,
