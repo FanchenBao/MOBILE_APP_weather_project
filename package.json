@@ -6,9 +6,11 @@
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "start": "react-native start",
-    "test": "jest --coverage",
+    "test": "jest --verbose --coverage",
+    "test:update": "jest --verbose --coverage --updateSnapshot",
     "lint": "eslint .",
-    "postinstall": "rm -rf .git/hooks/pre-push && node node_modules/husky/bin/install.js && rm -rf .git/hooks/pre-commit"
+    "postinstall": "rm -rf .git/hooks/pre-push && node node_modules/husky/bin/install.js && rm -rf .git/hooks/pre-commit",
+    "report": "open ./coverage/lcov-report/index.html"
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.7.1",
@@ -33,6 +35,7 @@
   },
   "jest": {
     "preset": "react-native",
+    "cacheDirectory": "./cache",
     "setupFiles": [
       "./jest.setup.js"
     ],

@@ -63,3 +63,6 @@ buck-out/
 
 # coverage report from jest
 coverage/
+
+# jest cache
+cache/
