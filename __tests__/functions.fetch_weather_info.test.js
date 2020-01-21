@@ -57,4 +57,5 @@ test('fetch weather info error', async () => {
   await fetchWeatherInfo({type: 'zip', value: '99999'});
   expect(console_spy).toHaveBeenCalledTimes(1);
   expect(console_spy).toHaveBeenLastCalledWith('oops');
+  console_spy.mockRestore();
 });
