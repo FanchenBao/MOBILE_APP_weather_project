@@ -53,4 +53,4 @@ async function fetchWeatherInfo(query) {
   }
 }
 
-export {fetchWeatherInfo};
+export {fetchWeatherInfo, urlMakers};
