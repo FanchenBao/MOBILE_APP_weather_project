@@ -41,77 +41,82 @@ jest.mock('../src/functions/get_user_permission.js', () => {
   };
 });
 
+let mockSuccessCallBack;
+let mockFailCallBack;
+let mockDenyCallBack;
+let mockConsoleLog;
+let mockConsoleError;
+// set up mock callbacks and mock console functions before each tests.
+beforeEach(() => {
+  mockSuccessCallBack = jest.fn();
+  mockFailCallBack = jest.fn();
+  mockDenyCallBack = jest.fn();
+  mockConsoleLog = jest.spyOn(global.console, 'log').mockImplementation();
+  mockConsoleError = jest.spyOn(global.console, 'error').mockImplementation();
+});
+// clean up console function mock after each test.
+afterEach(() => {
+  mockConsoleLog.mockRestore();
+  mockConsoleError.mockRestore();
+});
+
 /** test 1 */
 test('User permission ok, get location ok', async () => {
-  let mockSuccessCallBack = jest.fn();
-  let mockFailCallBack = jest.fn();
-  let mockDenyCallBack = jest.fn();
   await getGeolocation(mockSuccessCallBack, mockFailCallBack, mockDenyCallBack);
   expect(mockSuccessCallBack).toHaveBeenCalledTimes(1);
   expect(mockFailCallBack).not.toHaveBeenCalled();
   expect(mockDenyCallBack).not.toHaveBeenCalled();
+  expect(mockConsoleLog).not.toHaveBeenCalled();
+  expect(mockConsoleError).not.toHaveBeenCalled();
 });
 
 /** test 2 */
 test('User permission ok, get location fail', async () => {
-  let mockSuccessCallBack = jest.fn();
-  let mockFailCallBack = jest.fn();
-  let mockDenyCallBack = jest.fn();
   await getGeolocation(mockSuccessCallBack, mockFailCallBack, mockDenyCallBack);
   expect(mockSuccessCallBack).not.toHaveBeenCalled();
   expect(mockFailCallBack).toHaveBeenCalledTimes(1);
   expect(mockDenyCallBack).not.toHaveBeenCalled();
+  expect(mockConsoleLog).not.toHaveBeenCalled();
+  expect(mockConsoleError).not.toHaveBeenCalled();
 });
 
 /** test 3 */
 test('User permission fail, getFineLocationPermission ok', async () => {
-  let mockSuccessCallBack = jest.fn();
-  let mockFailCallBack = jest.fn();
-  let mockDenyCallBack = jest.fn();
-  let console_spy = jest.spyOn(global.console, 'log');
   await getGeolocation(mockSuccessCallBack, mockFailCallBack, mockDenyCallBack);
   expect(mockSuccessCallBack).toHaveBeenCalledTimes(1);
   expect(mockFailCallBack).not.toHaveBeenCalled();
   expect(mockDenyCallBack).not.toHaveBeenCalled();
-  expect(console_spy).toHaveBeenCalledTimes(2);
-  expect(console_spy).toHaveBeenCalledWith(
+  expect(mockConsoleLog).toHaveBeenCalledTimes(2);
+  expect(mockConsoleLog).toHaveBeenCalledWith(
     'Not allowed to access fine location. Ask for permission',
   );
-  expect(console_spy).toHaveBeenCalledWith('Geolocation permission granted');
-  console_spy.mockRestore();
+  expect(mockConsoleLog).toHaveBeenCalledWith('Geolocation permission granted');
+  expect(mockConsoleError).not.toHaveBeenCalled();
 });
 
 /** test 4 */
 test('User permission fail, getFineLocationPermission fail', async () => {
-  let mockSuccessCallBack = jest.fn();
-  let mockFailCallBack = jest.fn();
-  let mockDenyCallBack = jest.fn();
-  let console_spy = jest.spyOn(global.console, 'log');
   await getGeolocation(mockSuccessCallBack, mockFailCallBack, mockDenyCallBack);
   expect(mockSuccessCallBack).not.toHaveBeenCalled();
   expect(mockFailCallBack).not.toHaveBeenCalled();
   expect(mockDenyCallBack).toHaveBeenCalledTimes(1);
-  expect(console_spy).toHaveBeenCalledTimes(2);
-  expect(console_spy).toHaveBeenCalledWith(
+  expect(mockConsoleLog).toHaveBeenCalledTimes(2);
+  expect(mockConsoleLog).toHaveBeenCalledWith(
     'Not allowed to access fine location. Ask for permission',
   );
-  expect(console_spy).toHaveBeenCalledWith(
+  expect(mockConsoleLog).toHaveBeenCalledWith(
     'Geolocation denied. User decision: denied',
   );
-  console_spy.mockRestore();
+  expect(mockConsoleError).not.toHaveBeenCalled();
 });
 
 /** test 5 */
 test('Some error occurs', async () => {
-  let mockSuccessCallBack = jest.fn();
-  let mockFailCallBack = jest.fn();
-  let mockDenyCallBack = jest.fn();
-  let console_spy = jest.spyOn(global.console, 'error');
   await getGeolocation(mockSuccessCallBack, mockFailCallBack, mockDenyCallBack);
   expect(mockSuccessCallBack).not.toHaveBeenCalled();
   expect(mockFailCallBack).not.toHaveBeenCalled();
   expect(mockDenyCallBack).not.toHaveBeenCalled();
-  expect(console_spy).toHaveBeenCalledTimes(1);
-  expect(console_spy).toHaveBeenCalledWith('permission check error');
-  console_spy.mockRestore();
+  expect(mockConsoleLog).not.toHaveBeenCalled();
+  expect(mockConsoleError).toHaveBeenCalledTimes(1);
+  expect(mockConsoleError).toHaveBeenCalledWith('permission check error');
 });
