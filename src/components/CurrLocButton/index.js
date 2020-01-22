@@ -26,7 +26,6 @@ class CurrLocButton extends PureComponent {
    * @param {Map} position: Geolocation acquired from the device.
    */
   _successCallback = position => {
-    setTimeout(() => null, 100); // force wait
     this.props.setStateForecast({
       type: 'coord',
       value: {
