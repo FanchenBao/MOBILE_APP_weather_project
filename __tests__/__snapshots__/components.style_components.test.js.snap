@@ -1,0 +1,106 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders CityText correctly 1`] = `
+<Text
+  style={
+    Array [
+      Object {
+        "fontSize": 40,
+      },
+      Object {
+        "color": "#66ff33",
+      },
+    ]
+  }
+>
+  Test for CityText
+</Text>
+`;
+
+exports[`renders ErrorBubble correctly 1`] = `
+<Text
+  style={
+    Array [
+      Object {
+        "backgroundColor": "red",
+        "borderRadius": 10,
+        "color": "white",
+        "marginHorizontal": 10,
+        "marginTop": 5,
+        "padding": 2,
+        "textAlign": "center",
+      },
+      Object {
+        "fontSize": 14,
+      },
+    ]
+  }
+>
+  Test for ErrorBubble
+</Text>
+`;
+
+exports[`renders ErrorText correctly 1`] = `
+<Text
+  style={
+    Array [
+      Object {
+        "fontSize": 40,
+      },
+      Object {
+        "backgroundColor": "red",
+        "borderRadius": 10,
+        "color": "white",
+        "fontSize": 20,
+        "padding": 10,
+        "textAlign": "center",
+      },
+    ]
+  }
+>
+  Test for ErrorText
+</Text>
+`;
+
+exports[`renders ForecastCategoryText correctly 1`] = `
+<Text
+  style={
+    Array [
+      Object {
+        "fontSize": 20,
+      },
+      Object {
+        "fontWeight": "bold",
+      },
+      Object {
+        "marginLeft": 15,
+      },
+      Object {
+        "color": "#66ff33",
+      },
+    ]
+  }
+>
+  Test for ForecastCategoryText
+</Text>
+`;
+
+exports[`renders ForecastContentText correctly 1`] = `
+<Text
+  style={
+    Array [
+      Object {
+        "fontSize": 20,
+      },
+      Object {
+        "marginRight": 30,
+      },
+      Object {
+        "color": "#66ff33",
+      },
+    ]
+  }
+>
+  Test for ForecastContentText
+</Text>
+`;

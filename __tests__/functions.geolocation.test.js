@@ -61,7 +61,7 @@ afterEach(() => {
 });
 
 /** test 1 */
-test('User permission ok, get location ok', async () => {
+test('User permission ok, getCurrentPosition ok', async () => {
   await getGeolocation(mockSuccessCallBack, mockFailCallBack, mockDenyCallBack);
   expect(mockSuccessCallBack).toHaveBeenCalledTimes(1);
   expect(mockFailCallBack).not.toHaveBeenCalled();
@@ -71,7 +71,7 @@ test('User permission ok, get location ok', async () => {
 });
 
 /** test 2 */
-test('User permission ok, get location fail', async () => {
+test('User permission ok, getCurrentPosition fail', async () => {
   await getGeolocation(mockSuccessCallBack, mockFailCallBack, mockDenyCallBack);
   expect(mockSuccessCallBack).not.toHaveBeenCalled();
   expect(mockFailCallBack).toHaveBeenCalledTimes(1);
