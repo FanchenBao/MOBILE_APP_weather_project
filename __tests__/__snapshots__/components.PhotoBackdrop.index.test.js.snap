@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Obtain user photo successful render PhotoBackdrop with user photo 1`] = `
+<View
+  accessibilityIgnoresInvertColors={true}
+  style={
+    Object {
+      "flex": 1,
+      "flexDirection": "column",
+      "height": 1334,
+      "width": 750,
+    }
+  }
+>
+  <Image
+    resizeMode="cover"
+    source={
+      Object {
+        "uri": "dummy/uri",
+      }
+    }
+    style={
+      Array [
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        },
+        Object {
+          "height": 1334,
+          "width": 750,
+        },
+        undefined,
+      ]
+    }
+  />
+</View>
+`;

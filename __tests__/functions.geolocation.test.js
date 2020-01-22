@@ -1,45 +1,30 @@
 import {getGeolocation} from '../src/functions/geolocation.js';
+import Geolocation from 'react-native-geolocation-service';
+import {PermissionsAndroid} from 'react-native';
+import {getFineLocationPermission} from '../src/functions/get_user_permission.js';
 
-// Mock two methods in PermissionsAndroid
-jest.mock('react-native', () => {
-  return {
-    PermissionsAndroid: {
-      check: jest
-        .fn()
-        .mockResolvedValueOnce(true) // test 1
-        .mockResolvedValueOnce(true) // test 2
-        .mockResolvedValueOnce(false) // test 3, first round
-        .mockResolvedValueOnce(true) // test 3, second recursion round
-        .mockResolvedValueOnce(false) // test 4
-        .mockRejectedValueOnce('permission check error'), // test 5
-      PERMISSIONS: {ACCESS_FINE_LOCATION: 'foo'},
-      RESULTS: {GRANTED: 'granted'},
-    },
-  };
-});
+// Mock PermissionsAndroid.check
+jest
+  .spyOn(PermissionsAndroid, 'check')
+  .mockResolvedValueOnce(true) // test 1
+  .mockResolvedValueOnce(true) // test 2
+  .mockResolvedValueOnce(false) // test 3, first round
+  .mockResolvedValueOnce(true) // test 3, second recursion round
+  .mockResolvedValueOnce(false) // test 4
+  .mockRejectedValueOnce('permission check error'); // test 5
 
-// Mock Geolocation.getCurrentPosition. Note that since it has already been
-// mocked manually in __mock__ folder, all we need to do is to modify the
-// behavior of getCurrentPosition from the manual mock.
-jest.mock('../__mocks__/@react-native-community/geolocation.js', () => {
-  return {
-    getCurrentPosition: jest
-      .fn()
-      .mockImplementationOnce((scb, ecb, prop) => scb()) // test 1
-      .mockImplementationOnce((scb, ecb, prop) => ecb()) // test 2
-      .mockImplementationOnce((scb, ecb, prop) => scb()), // test 3
-  };
-});
+// Mock Geolocation.getCurrentPosition. The initial mock work has been done in
+// jest.setup.js, so here we can directy mock the implementation.
+Geolocation.getCurrentPosition
+  .mockImplementationOnce((scb, ecb, prop) => scb()) // test 1
+  .mockImplementationOnce((scb, ecb, prop) => ecb()) // test 2
+  .mockImplementationOnce((scb, ecb, prop) => scb()); // test 3
 
 // Mock getFineLocationPermission from app's own module.
-jest.mock('../src/functions/get_user_permission.js', () => {
-  return {
-    getFineLocationPermission: jest
-      .fn()
-      .mockResolvedValueOnce('granted') // test 3
-      .mockResolvedValueOnce('denied'), // test 4
-  };
-});
+jest.mock('../src/functions/get_user_permission.js');
+getFineLocationPermission
+  .mockResolvedValueOnce('granted')
+  .mockResolvedValueOnce('denied');
 
 let mockSuccessCallBack;
 let mockFailCallBack;
