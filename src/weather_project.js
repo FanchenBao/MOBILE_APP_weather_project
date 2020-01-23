@@ -73,7 +73,7 @@ class WeatherProject extends Component {
    *
    * @param {string} event The event passed by TextInput upon submitting.
    */
-  _handleZipInput = event => {
+  _handleZipInput = async event => {
     // this.setState({hasModified: true, zip: zipInput});
     let zipInput = event.nativeEvent.text;
     if (isZipValid(zipInput)) {
@@ -83,11 +83,8 @@ class WeatherProject extends Component {
         zip: zipInput,
         waiting: true,
       });
-      // zip code input successful. Force a one second delay to show spinner
-      setTimeout(
-        () => this._setStateForecast({type: 'zip', value: zipInput}),
-        100,
-      );
+      // zip code input successful.
+      await this._setStateForecast({type: 'zip', value: zipInput});
     } else {
       // input invalid. record zip input, reset forecast, and set error msg type
       this.setState({

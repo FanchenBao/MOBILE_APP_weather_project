@@ -1,0 +1,1742 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`_handleZipInput input INVALID 1`] = `
+<View
+  accessibilityIgnoresInvertColors={true}
+  style={
+    Object {
+      "flex": 1,
+      "flexDirection": "column",
+      "height": 1334,
+      "width": 750,
+    }
+  }
+>
+  <Image
+    resizeMode="cover"
+    source={
+      Object {
+        "uri": "dummy/uri",
+      }
+    }
+    style={
+      Array [
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        },
+        Object {
+          "height": 1334,
+          "width": 750,
+        },
+        undefined,
+      ]
+    }
+  />
+  <View
+    style={
+      Object {
+        "backgroundColor": "#333333",
+        "flexDirection": "column",
+        "height": 800.4000000000001,
+        "opacity": 0.7,
+        "paddingTop": 5,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "flex": 0.1,
+          "justifyContent": "flex-start",
+        }
+      }
+    />
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flex": 1,
+          "flexDirection": "row",
+          "flexWrap": "nowrap",
+          "paddingHorizontal": 40,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#FFFFFF",
+            "fontSize": 20,
+          }
+        }
+      >
+        Current weather for 
+      </Text>
+      <View
+        style={
+          Object {
+            "flex": 1,
+            "justifyContent": "center",
+            "marginLeft": 5,
+          }
+        }
+      >
+        <TextInput
+          allowFontScaling={true}
+          editable={false}
+          keyboardType="number-pad"
+          onSubmitEditing={[Function]}
+          placeholder="zip code"
+          placeholderTextColor="grey"
+          rejectResponderTermination={true}
+          style={
+            Array [
+              Object {
+                "borderBottomColor": "white",
+                "borderBottomWidth": 2,
+                "flex": 2,
+                "height": 80,
+                "paddingBottom": 0,
+                "paddingTop": 27,
+                "textAlign": "center",
+              },
+              Object {
+                "color": "#FFFFFF",
+                "fontSize": 20,
+              },
+            ]
+          }
+          underlineColorAndroid="transparent"
+        />
+        <View
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "red",
+                  "borderRadius": 10,
+                  "color": "white",
+                  "marginHorizontal": 10,
+                  "marginTop": 5,
+                  "padding": 2,
+                  "textAlign": "center",
+                },
+                Object {
+                  "fontSize": 14,
+                },
+              ]
+            }
+          >
+            Zip INVALID
+          </Text>
+        </View>
+      </View>
+    </View>
+    <View
+      accessible={true}
+      focusable={true}
+      isTVSelectable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "white",
+          "borderRadius": 10,
+          "flex": 0.5,
+          "justifyContent": "center",
+          "marginHorizontal": 100,
+          "marginVertical": 5,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "fontSize": 18,
+          }
+        }
+      >
+        Use Current Location
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "flex": 2,
+          "flexDirection": "column",
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "center",
+          }
+        }
+      >
+        <Text
+          style={
+            Array [
+              Object {
+                "fontSize": 40,
+              },
+              Object {
+                "backgroundColor": "red",
+                "borderRadius": 10,
+                "color": "white",
+                "fontSize": 20,
+                "padding": 10,
+                "textAlign": "center",
+              },
+            ]
+          }
+        >
+          No Internet
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "flex": 2,
+            "flexDirection": "row",
+          }
+        }
+      />
+    </View>
+  </View>
+</View>
+`;
+
+exports[`_handleZipInput input valid 1`] = `
+<View
+  accessibilityIgnoresInvertColors={true}
+  style={
+    Object {
+      "flex": 1,
+      "flexDirection": "column",
+      "height": 1334,
+      "width": 750,
+    }
+  }
+>
+  <Image
+    resizeMode="cover"
+    source={
+      Object {
+        "uri": "dummy/uri",
+      }
+    }
+    style={
+      Array [
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        },
+        Object {
+          "height": 1334,
+          "width": 750,
+        },
+        undefined,
+      ]
+    }
+  />
+  <View
+    style={
+      Object {
+        "backgroundColor": "#333333",
+        "flexDirection": "column",
+        "height": 800.4000000000001,
+        "opacity": 0.7,
+        "paddingTop": 5,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "flex": 0.1,
+          "justifyContent": "flex-start",
+        }
+      }
+    />
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flex": 1,
+          "flexDirection": "row",
+          "flexWrap": "nowrap",
+          "paddingHorizontal": 40,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#FFFFFF",
+            "fontSize": 20,
+          }
+        }
+      >
+        Current weather for 
+      </Text>
+      <View
+        style={
+          Object {
+            "flex": 1,
+            "justifyContent": "center",
+            "marginLeft": 5,
+          }
+        }
+      >
+        <TextInput
+          allowFontScaling={true}
+          editable={false}
+          keyboardType="number-pad"
+          onSubmitEditing={[Function]}
+          placeholder="zip code"
+          placeholderTextColor="grey"
+          rejectResponderTermination={true}
+          style={
+            Array [
+              Object {
+                "borderBottomColor": "white",
+                "borderBottomWidth": 2,
+                "flex": 2,
+                "height": 80,
+                "paddingBottom": 0,
+                "paddingTop": 27,
+                "textAlign": "center",
+              },
+              Object {
+                "color": "#FFFFFF",
+                "fontSize": 20,
+              },
+            ]
+          }
+          underlineColorAndroid="transparent"
+        />
+        <View
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+        />
+      </View>
+    </View>
+    <View
+      accessible={true}
+      focusable={true}
+      isTVSelectable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "white",
+          "borderRadius": 10,
+          "flex": 0.5,
+          "justifyContent": "center",
+          "marginHorizontal": 100,
+          "marginVertical": 5,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "fontSize": 18,
+          }
+        }
+      >
+        Use Current Location
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "flex": 2,
+          "flexDirection": "column",
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "center",
+          }
+        }
+      >
+        <Text
+          style={
+            Array [
+              Object {
+                "fontSize": 40,
+              },
+              Object {
+                "backgroundColor": "red",
+                "borderRadius": 10,
+                "color": "white",
+                "fontSize": 20,
+                "padding": 10,
+                "textAlign": "center",
+              },
+            ]
+          }
+        >
+          No Internet
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "flex": 2,
+            "flexDirection": "row",
+          }
+        }
+      />
+    </View>
+  </View>
+</View>
+`;
+
+exports[`_setToWait behaves as expected, render waiting bar 1`] = `
+<View
+  accessibilityIgnoresInvertColors={true}
+  style={
+    Object {
+      "flex": 1,
+      "flexDirection": "column",
+      "height": 1334,
+      "width": 750,
+    }
+  }
+>
+  <Image
+    resizeMode="cover"
+    source={
+      Object {
+        "uri": "dummy/uri",
+      }
+    }
+    style={
+      Array [
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        },
+        Object {
+          "height": 1334,
+          "width": 750,
+        },
+        undefined,
+      ]
+    }
+  />
+  <View
+    style={
+      Object {
+        "backgroundColor": "#333333",
+        "flexDirection": "column",
+        "height": 800.4000000000001,
+        "opacity": 0.7,
+        "paddingTop": 5,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "flex": 0.1,
+          "justifyContent": "flex-start",
+        }
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "alignSelf": "flex-start",
+              "borderColor": "red",
+              "borderWidth": 1,
+            },
+            undefined,
+          ]
+        }
+      />
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flex": 1,
+          "flexDirection": "row",
+          "flexWrap": "nowrap",
+          "paddingHorizontal": 40,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#FFFFFF",
+            "fontSize": 20,
+          }
+        }
+      >
+        Current weather for 
+      </Text>
+      <View
+        style={
+          Object {
+            "flex": 1,
+            "justifyContent": "center",
+            "marginLeft": 5,
+          }
+        }
+      >
+        <TextInput
+          allowFontScaling={true}
+          editable={false}
+          keyboardType="number-pad"
+          onSubmitEditing={[Function]}
+          placeholder="zip code"
+          placeholderTextColor="grey"
+          rejectResponderTermination={true}
+          style={
+            Array [
+              Object {
+                "borderBottomColor": "white",
+                "borderBottomWidth": 2,
+                "flex": 2,
+                "height": 80,
+                "paddingBottom": 0,
+                "paddingTop": 27,
+                "textAlign": "center",
+              },
+              Object {
+                "color": "#FFFFFF",
+                "fontSize": 20,
+              },
+            ]
+          }
+          underlineColorAndroid="transparent"
+        />
+        <View
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+        />
+      </View>
+    </View>
+    <View
+      accessible={true}
+      focusable={true}
+      isTVSelectable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "white",
+          "borderRadius": 10,
+          "flex": 0.5,
+          "justifyContent": "center",
+          "marginHorizontal": 100,
+          "marginVertical": 5,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "fontSize": 18,
+          }
+        }
+      >
+        Use Current Location
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "flex": 2,
+          "flexDirection": "column",
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "center",
+          }
+        }
+      >
+        <Text
+          style={
+            Array [
+              Object {
+                "fontSize": 40,
+              },
+              Object {
+                "backgroundColor": "red",
+                "borderRadius": 10,
+                "color": "white",
+                "fontSize": 20,
+                "padding": 10,
+                "textAlign": "center",
+              },
+            ]
+          }
+        >
+          No Internet
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "flex": 2,
+            "flexDirection": "row",
+          }
+        }
+      />
+    </View>
+  </View>
+</View>
+`;
+
+exports[`NetInfo shows internet on, and there is valid forecast 1`] = `
+<View
+  accessibilityIgnoresInvertColors={true}
+  style={
+    Object {
+      "flex": 1,
+      "flexDirection": "column",
+      "height": 1334,
+      "width": 750,
+    }
+  }
+>
+  <Image
+    resizeMode="cover"
+    source={
+      Object {
+        "uri": "dummy/uri",
+      }
+    }
+    style={
+      Array [
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        },
+        Object {
+          "height": 1334,
+          "width": 750,
+        },
+        undefined,
+      ]
+    }
+  />
+  <View
+    style={
+      Object {
+        "backgroundColor": "#333333",
+        "flexDirection": "column",
+        "height": 800.4000000000001,
+        "opacity": 0.7,
+        "paddingTop": 5,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "flex": 0.1,
+          "justifyContent": "flex-start",
+        }
+      }
+    />
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flex": 1,
+          "flexDirection": "row",
+          "flexWrap": "nowrap",
+          "paddingHorizontal": 40,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#FFFFFF",
+            "fontSize": 20,
+          }
+        }
+      >
+        Current weather for 
+      </Text>
+      <View
+        style={
+          Object {
+            "flex": 1,
+            "justifyContent": "center",
+            "marginLeft": 5,
+          }
+        }
+      >
+        <TextInput
+          allowFontScaling={true}
+          editable={true}
+          keyboardType="number-pad"
+          onSubmitEditing={[Function]}
+          placeholder="zip code"
+          placeholderTextColor="grey"
+          rejectResponderTermination={true}
+          style={
+            Array [
+              Object {
+                "borderBottomColor": "white",
+                "borderBottomWidth": 2,
+                "flex": 2,
+                "height": 80,
+                "paddingBottom": 0,
+                "paddingTop": 27,
+                "textAlign": "center",
+              },
+              Object {
+                "color": "#FFFFFF",
+                "fontSize": 20,
+              },
+            ]
+          }
+          underlineColorAndroid="transparent"
+        />
+        <View
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+        />
+      </View>
+    </View>
+    <View
+      accessible={true}
+      focusable={true}
+      isTVSelectable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "white",
+          "borderRadius": 10,
+          "flex": 0.5,
+          "justifyContent": "center",
+          "marginHorizontal": 100,
+          "marginVertical": 5,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "fontSize": 18,
+          }
+        }
+      >
+        Use Current Location
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "flex": 2,
+          "flexDirection": "column",
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "center",
+          }
+        }
+      >
+        <Text
+          style={
+            Array [
+              Object {
+                "fontSize": 40,
+              },
+              Object {
+                "color": "#66ff33",
+              },
+            ]
+          }
+        >
+          some city
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "flex": 2,
+            "flexDirection": "row",
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flex": 1,
+              "flexDirection": "column",
+              "justifyContent": "space-evenly",
+            }
+          }
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "fontSize": 20,
+                },
+                Object {
+                  "fontWeight": "bold",
+                },
+                Object {
+                  "marginLeft": 15,
+                },
+                Object {
+                  "color": "#66ff33",
+                },
+              ]
+            }
+          >
+            Condition:
+          </Text>
+          <Text
+            style={
+              Array [
+                Object {
+                  "fontSize": 20,
+                },
+                Object {
+                  "fontWeight": "bold",
+                },
+                Object {
+                  "marginLeft": 15,
+                },
+                Object {
+                  "color": "#66ff33",
+                },
+              ]
+            }
+          >
+            Temperature:
+          </Text>
+        </View>
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flex": 1,
+              "flexDirection": "column",
+              "justifyContent": "space-evenly",
+            }
+          }
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "fontSize": 20,
+                },
+                Object {
+                  "marginRight": 30,
+                },
+                Object {
+                  "color": "#66ff33",
+                },
+              ]
+            }
+          >
+            clear sky
+          </Text>
+          <Text
+            style={
+              Array [
+                Object {
+                  "fontSize": 20,
+                },
+                Object {
+                  "marginRight": 30,
+                },
+                Object {
+                  "color": "#66ff33",
+                },
+              ]
+            }
+          >
+            10 °F
+          </Text>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`NetInfo shows internet on, but forecast has error msg 1`] = `
+<View
+  accessibilityIgnoresInvertColors={true}
+  style={
+    Object {
+      "flex": 1,
+      "flexDirection": "column",
+      "height": 1334,
+      "width": 750,
+    }
+  }
+>
+  <Image
+    resizeMode="cover"
+    source={
+      Object {
+        "uri": "dummy/uri",
+      }
+    }
+    style={
+      Array [
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        },
+        Object {
+          "height": 1334,
+          "width": 750,
+        },
+        undefined,
+      ]
+    }
+  />
+  <View
+    style={
+      Object {
+        "backgroundColor": "#333333",
+        "flexDirection": "column",
+        "height": 800.4000000000001,
+        "opacity": 0.7,
+        "paddingTop": 5,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "flex": 0.1,
+          "justifyContent": "flex-start",
+        }
+      }
+    />
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flex": 1,
+          "flexDirection": "row",
+          "flexWrap": "nowrap",
+          "paddingHorizontal": 40,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#FFFFFF",
+            "fontSize": 20,
+          }
+        }
+      >
+        Current weather for 
+      </Text>
+      <View
+        style={
+          Object {
+            "flex": 1,
+            "justifyContent": "center",
+            "marginLeft": 5,
+          }
+        }
+      >
+        <TextInput
+          allowFontScaling={true}
+          editable={true}
+          keyboardType="number-pad"
+          onSubmitEditing={[Function]}
+          placeholder="zip code"
+          placeholderTextColor="grey"
+          rejectResponderTermination={true}
+          style={
+            Array [
+              Object {
+                "borderBottomColor": "white",
+                "borderBottomWidth": 2,
+                "flex": 2,
+                "height": 80,
+                "paddingBottom": 0,
+                "paddingTop": 27,
+                "textAlign": "center",
+              },
+              Object {
+                "color": "#FFFFFF",
+                "fontSize": 20,
+              },
+            ]
+          }
+          underlineColorAndroid="transparent"
+        />
+        <View
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+        />
+      </View>
+    </View>
+    <View
+      accessible={true}
+      focusable={true}
+      isTVSelectable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "white",
+          "borderRadius": 10,
+          "flex": 0.5,
+          "justifyContent": "center",
+          "marginHorizontal": 100,
+          "marginVertical": 5,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "fontSize": 18,
+          }
+        }
+      >
+        Use Current Location
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "flex": 2,
+          "flexDirection": "column",
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "center",
+          }
+        }
+      >
+        <Text
+          style={
+            Array [
+              Object {
+                "fontSize": 40,
+              },
+              Object {
+                "backgroundColor": "red",
+                "borderRadius": 10,
+                "color": "white",
+                "fontSize": 20,
+                "padding": 10,
+                "textAlign": "center",
+              },
+            ]
+          }
+        >
+          City Not Found
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "flex": 2,
+            "flexDirection": "row",
+          }
+        }
+      />
+    </View>
+  </View>
+</View>
+`;
+
+exports[`NetInfo shows there is internet, but no forecast 1`] = `
+<View
+  accessibilityIgnoresInvertColors={true}
+  style={
+    Object {
+      "flex": 1,
+      "flexDirection": "column",
+      "height": 1334,
+      "width": 750,
+    }
+  }
+>
+  <Image
+    resizeMode="cover"
+    source={
+      Object {
+        "uri": "dummy/uri",
+      }
+    }
+    style={
+      Array [
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        },
+        Object {
+          "height": 1334,
+          "width": 750,
+        },
+        undefined,
+      ]
+    }
+  />
+  <View
+    style={
+      Object {
+        "backgroundColor": "#333333",
+        "flexDirection": "column",
+        "height": 800.4000000000001,
+        "opacity": 0.7,
+        "paddingTop": 5,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "flex": 0.1,
+          "justifyContent": "flex-start",
+        }
+      }
+    />
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flex": 1,
+          "flexDirection": "row",
+          "flexWrap": "nowrap",
+          "paddingHorizontal": 40,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#FFFFFF",
+            "fontSize": 20,
+          }
+        }
+      >
+        Current weather for 
+      </Text>
+      <View
+        style={
+          Object {
+            "flex": 1,
+            "justifyContent": "center",
+            "marginLeft": 5,
+          }
+        }
+      >
+        <TextInput
+          allowFontScaling={true}
+          editable={true}
+          keyboardType="number-pad"
+          onSubmitEditing={[Function]}
+          placeholder="zip code"
+          placeholderTextColor="grey"
+          rejectResponderTermination={true}
+          style={
+            Array [
+              Object {
+                "borderBottomColor": "white",
+                "borderBottomWidth": 2,
+                "flex": 2,
+                "height": 80,
+                "paddingBottom": 0,
+                "paddingTop": 27,
+                "textAlign": "center",
+              },
+              Object {
+                "color": "#FFFFFF",
+                "fontSize": 20,
+              },
+            ]
+          }
+          underlineColorAndroid="transparent"
+        />
+        <View
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+        />
+      </View>
+    </View>
+    <View
+      accessible={true}
+      focusable={true}
+      isTVSelectable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "white",
+          "borderRadius": 10,
+          "flex": 0.5,
+          "justifyContent": "center",
+          "marginHorizontal": 100,
+          "marginVertical": 5,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "fontSize": 18,
+          }
+        }
+      >
+        Use Current Location
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "flex": 2,
+          "flexDirection": "column",
+        }
+      }
+    />
+  </View>
+</View>
+`;
+
+exports[`render No Internet 1`] = `
+<View
+  accessibilityIgnoresInvertColors={true}
+  style={
+    Object {
+      "flex": 1,
+      "flexDirection": "column",
+      "height": 1334,
+      "width": 750,
+    }
+  }
+>
+  <Image
+    resizeMode="cover"
+    source={
+      Object {
+        "uri": "dummy/uri",
+      }
+    }
+    style={
+      Array [
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        },
+        Object {
+          "height": 1334,
+          "width": 750,
+        },
+        undefined,
+      ]
+    }
+  />
+  <View
+    style={
+      Object {
+        "backgroundColor": "#333333",
+        "flexDirection": "column",
+        "height": 800.4000000000001,
+        "opacity": 0.7,
+        "paddingTop": 5,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "flex": 0.1,
+          "justifyContent": "flex-start",
+        }
+      }
+    />
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flex": 1,
+          "flexDirection": "row",
+          "flexWrap": "nowrap",
+          "paddingHorizontal": 40,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#FFFFFF",
+            "fontSize": 20,
+          }
+        }
+      >
+        Current weather for 
+      </Text>
+      <View
+        style={
+          Object {
+            "flex": 1,
+            "justifyContent": "center",
+            "marginLeft": 5,
+          }
+        }
+      >
+        <TextInput
+          allowFontScaling={true}
+          editable={false}
+          keyboardType="number-pad"
+          onSubmitEditing={[Function]}
+          placeholder="zip code"
+          placeholderTextColor="grey"
+          rejectResponderTermination={true}
+          style={
+            Array [
+              Object {
+                "borderBottomColor": "white",
+                "borderBottomWidth": 2,
+                "flex": 2,
+                "height": 80,
+                "paddingBottom": 0,
+                "paddingTop": 27,
+                "textAlign": "center",
+              },
+              Object {
+                "color": "#FFFFFF",
+                "fontSize": 20,
+              },
+            ]
+          }
+          underlineColorAndroid="transparent"
+        />
+        <View
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+        />
+      </View>
+    </View>
+    <View
+      accessible={true}
+      focusable={true}
+      isTVSelectable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "white",
+          "borderRadius": 10,
+          "flex": 0.5,
+          "justifyContent": "center",
+          "marginHorizontal": 100,
+          "marginVertical": 5,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "fontSize": 18,
+          }
+        }
+      >
+        Use Current Location
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "flex": 2,
+          "flexDirection": "column",
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "center",
+          }
+        }
+      >
+        <Text
+          style={
+            Array [
+              Object {
+                "fontSize": 40,
+              },
+              Object {
+                "backgroundColor": "red",
+                "borderRadius": 10,
+                "color": "white",
+                "fontSize": 20,
+                "padding": 10,
+                "textAlign": "center",
+              },
+            ]
+          }
+        >
+          No Internet
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "flex": 2,
+            "flexDirection": "row",
+          }
+        }
+      />
+    </View>
+  </View>
+</View>
+`;
+
+exports[`render zip required error bubble 1`] = `
+<View
+  accessibilityIgnoresInvertColors={true}
+  style={
+    Object {
+      "flex": 1,
+      "flexDirection": "column",
+      "height": 1334,
+      "width": 750,
+    }
+  }
+>
+  <Image
+    resizeMode="cover"
+    source={
+      Object {
+        "uri": "dummy/uri",
+      }
+    }
+    style={
+      Array [
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        },
+        Object {
+          "height": 1334,
+          "width": 750,
+        },
+        undefined,
+      ]
+    }
+  />
+  <View
+    style={
+      Object {
+        "backgroundColor": "#333333",
+        "flexDirection": "column",
+        "height": 800.4000000000001,
+        "opacity": 0.7,
+        "paddingTop": 5,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "flex": 0.1,
+          "justifyContent": "flex-start",
+        }
+      }
+    />
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flex": 1,
+          "flexDirection": "row",
+          "flexWrap": "nowrap",
+          "paddingHorizontal": 40,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#FFFFFF",
+            "fontSize": 20,
+          }
+        }
+      >
+        Current weather for 
+      </Text>
+      <View
+        style={
+          Object {
+            "flex": 1,
+            "justifyContent": "center",
+            "marginLeft": 5,
+          }
+        }
+      >
+        <TextInput
+          allowFontScaling={true}
+          editable={false}
+          keyboardType="number-pad"
+          onSubmitEditing={[Function]}
+          placeholder="zip code"
+          placeholderTextColor="grey"
+          rejectResponderTermination={true}
+          style={
+            Array [
+              Object {
+                "borderBottomColor": "white",
+                "borderBottomWidth": 2,
+                "flex": 2,
+                "height": 80,
+                "paddingBottom": 0,
+                "paddingTop": 27,
+                "textAlign": "center",
+              },
+              Object {
+                "color": "#FFFFFF",
+                "fontSize": 20,
+              },
+            ]
+          }
+          underlineColorAndroid="transparent"
+        />
+        <View
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "red",
+                  "borderRadius": 10,
+                  "color": "white",
+                  "marginHorizontal": 10,
+                  "marginTop": 5,
+                  "padding": 2,
+                  "textAlign": "center",
+                },
+                Object {
+                  "fontSize": 14,
+                },
+              ]
+            }
+          >
+            Zip required
+          </Text>
+        </View>
+      </View>
+    </View>
+    <View
+      accessible={true}
+      focusable={true}
+      isTVSelectable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "white",
+          "borderRadius": 10,
+          "flex": 0.5,
+          "justifyContent": "center",
+          "marginHorizontal": 100,
+          "marginVertical": 5,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "fontSize": 18,
+          }
+        }
+      >
+        Use Current Location
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "flex": 2,
+          "flexDirection": "column",
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "center",
+          }
+        }
+      >
+        <Text
+          style={
+            Array [
+              Object {
+                "fontSize": 40,
+              },
+              Object {
+                "backgroundColor": "red",
+                "borderRadius": 10,
+                "color": "white",
+                "fontSize": 20,
+                "padding": 10,
+                "textAlign": "center",
+              },
+            ]
+          }
+        >
+          No Internet
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "flex": 2,
+            "flexDirection": "row",
+          }
+        }
+      />
+    </View>
+  </View>
+</View>
+`;
