@@ -10,7 +10,8 @@
     "test:update": "jest --verbose --coverage --updateSnapshot",
     "test:coverage": "jest --coverage && open ./coverage/lcov-report/index.html",
     "lint": "eslint .",
-    "postinstall": "rm -rf .git/hooks/pre-push && node node_modules/husky/bin/install.js && rm -rf .git/hooks/pre-commit"
+    "postinstall": "rm -rf .git/hooks/pre-push && node node_modules/husky/bin/install.js && rm -rf .git/hooks/pre-commit",
+    "flow": "flow"
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.7.1",
@@ -22,12 +23,15 @@
     "validate.js": "^0.13.1"
   },
   "devDependencies": {
+    "@babel/cli": "^7.8.3",
     "@babel/core": "^7.6.2",
+    "@babel/preset-flow": "^7.8.3",
     "@babel/runtime": "^7.6.2",
     "@react-native-community/eslint-config": "^0.0.5",
     "@types/jest": "^24.9.0",
     "babel-jest": "^24.9.0",
     "eslint": "^5.16.0",
+    "flow-bin": "^0.116.1",
     "husky": "^3.1.0",
     "jest": "^24.9.0",
     "metro-react-native-babel-preset": "^0.56.0",

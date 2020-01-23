@@ -1,3 +1,4 @@
+//@flow
 import {PermissionsAndroid} from 'react-native';
 
 /**
@@ -6,7 +7,11 @@ import {PermissionsAndroid} from 'react-native';
  * @param {string} title Title for the rationale.
  * @param {string} msg Message in the rationale.
  */
-async function getUserPermission(permission, title, msg) {
+async function getUserPermission(
+  permission: string,
+  title: string,
+  msg: string,
+) {
   try {
     let userDecision = await PermissionsAndroid.request(permission, {
       // rationale for obtaining fine location permission

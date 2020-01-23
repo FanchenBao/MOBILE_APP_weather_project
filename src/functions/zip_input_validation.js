@@ -1,3 +1,4 @@
+//@flow
 import validate from 'validate.js';
 
 /**
@@ -7,7 +8,7 @@ import validate from 'validate.js';
  * @param {string} zipInput The user-input zip code.
  * @returns {boolean} true if validation passes; otherwise false.
  */
-function isZipValid(zipInput) {
+function isZipValid(zipInput: string) {
   return validate({zip: zipInput}, constraints) === undefined ? true : false;
 }
 

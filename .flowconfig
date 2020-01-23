@@ -20,6 +20,15 @@ node_modules/warning/.*
 
 [include]
 
+; Use declarations to skip type check for the files but still extract the types.
+; This solves the problem of flow reporting error from third-party modules if
+; they are included in type checking, or flow reporting that it could not find
+; certain module if they are simply ignored. Untyped should not be used because
+; it extracts the module as `any` instead of its real type, so it defeats the
+; purpose of doing type checking.
+[declarations]
+<PROJECT_ROOT>/node_modules/.*
+
 [libs]
 node_modules/react-native/Libraries/react-native/react-native-interface.js
 node_modules/react-native/flow/
@@ -72,4 +81,4 @@ untyped-import
 untyped-type-import
 
 [version]
-^0.105.0
+0.116.1
